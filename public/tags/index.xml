@@ -2,75 +2,75 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Liz Roten</title>
-    <link>/blog/tags/</link>
+    <link>https://brave-curran-6357b4.netlify.com/blog/tags/</link>
     <description>Recent content in Tags on Liz Roten</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 18 Mar 2018 12:13:32 +0530</lastBuildDate>
     
-	<atom:link href="/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://brave-curran-6357b4.netlify.com/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Procrastinating</title>
-      <link>/blog/tags/procrastinating/</link>
+      <link>https://brave-curran-6357b4.netlify.com/blog/tags/procrastinating/</link>
       <pubDate>Sun, 18 Mar 2018 12:13:32 +0530</pubDate>
       
-      <guid>/blog/tags/procrastinating/</guid>
+      <guid>https://brave-curran-6357b4.netlify.com/blog/tags/procrastinating/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Space</title>
-      <link>/blog/tags/space/</link>
+      <link>https://brave-curran-6357b4.netlify.com/blog/tags/space/</link>
       <pubDate>Sun, 18 Mar 2018 12:13:30 +0530</pubDate>
       
-      <guid>/blog/tags/space/</guid>
+      <guid>https://brave-curran-6357b4.netlify.com/blog/tags/space/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Primer</title>
-      <link>/blog/tags/primer/</link>
+      <link>https://brave-curran-6357b4.netlify.com/blog/tags/primer/</link>
       <pubDate>Sun, 18 Mar 2018 02:01:58 +0530</pubDate>
       
-      <guid>/blog/tags/primer/</guid>
+      <guid>https://brave-curran-6357b4.netlify.com/blog/tags/primer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>todo</title>
-      <link>/blog/tags/todo/</link>
+      <link>https://brave-curran-6357b4.netlify.com/blog/tags/todo/</link>
       <pubDate>Sun, 18 Mar 2018 02:01:58 +0530</pubDate>
       
-      <guid>/blog/tags/todo/</guid>
+      <guid>https://brave-curran-6357b4.netlify.com/blog/tags/todo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>plot</title>
-      <link>/blog/tags/plot/</link>
+      <link>https://brave-curran-6357b4.netlify.com/blog/tags/plot/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/blog/tags/plot/</guid>
+      <guid>https://brave-curran-6357b4.netlify.com/blog/tags/plot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R Markdown</title>
-      <link>/blog/tags/r-markdown/</link>
+      <link>https://brave-curran-6357b4.netlify.com/blog/tags/r-markdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/blog/tags/r-markdown/</guid>
+      <guid>https://brave-curran-6357b4.netlify.com/blog/tags/r-markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>regression</title>
-      <link>/blog/tags/regression/</link>
+      <link>https://brave-curran-6357b4.netlify.com/blog/tags/regression/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/blog/tags/regression/</guid>
+      <guid>https://brave-curran-6357b4.netlify.com/blog/tags/regression/</guid>
       <description></description>
     </item>
     
