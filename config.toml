@@ -1,4 +1,4 @@
-baseURL = "/blog/"
+baseURL = "https://lizrotenblog.netlify.com/blog/"
 languageCode = "en-us"
 title = "Liz Roten"
 theme = "ezhil"
@@ -6,14 +6,15 @@ theme = "ezhil"
 pygmentsstyle = "vs"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
+relativeURLs = true
 
-googleAnalytics = "UA-123-45"
-disqusShortname = "localhost"
+googleAnalytics = ""
+disqusShortname = ""
 
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [params]
-	subtitle = "Clean and minimal personal [blog theme for Hugo](https://github.com/vividvilla/ezhil)"
+	subtitle = ""
 	# Number of posts to show in recent posts list.
 	recentPostsCount = 10
 	# Content types which are excluded from recent posts and archive page.
@@ -35,21 +36,6 @@ weight = 2
 name = "Tags"
 url = "/tags"
 weight = 4
-
-[[params.social]]
-name = "Github"
-icon = "github"
-url = "https://github.com/vividvilla/ezhil"
-
-[[params.social]]
-name = "Twitter"
-icon = "twitter"
-url = "https://twitter.com/gohugoio"
-
-[[params.social]]
-name = "RSS"
-icon = "rss"
-url = "/index.xml"
 
 [taxonomies]
    tag = "tags"
