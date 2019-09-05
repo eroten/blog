@@ -1,5 +1,5 @@
 theme = "hugo-theme-slim"
 baseURL = "/blog"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Liz's Blog"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
