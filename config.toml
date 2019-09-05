@@ -1,6 +1,6 @@
-baseURL = "http://example.org/"
+baseURL = "https://lizroten.info/blog"
 languageCode = "en-us"
-title = "Ezhil"
+title = "Liz Roten"
 theme = "ezhil"
 
 pygmentsstyle = "vs"
@@ -9,6 +9,8 @@ pygmentscodefencesguesssyntax = true
 
 googleAnalytics = "UA-123-45"
 disqusShortname = "localhost"
+
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [params]
 	subtitle = "Clean and minimal personal [blog theme for Hugo](https://github.com/vividvilla/ezhil)"
