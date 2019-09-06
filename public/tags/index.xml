@@ -6,9 +6,64 @@
     <description>Recent content in Tags on Liz Roten</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sat, 31 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://lizrotenblog.netlify.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>eMoods</title>
+      <link>https://lizrotenblog.netlify.com/tags/emoods/</link>
+      <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/emoods/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggplot2</title>
+      <link>https://lizrotenblog.netlify.com/tags/ggplot2/</link>
+      <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mental health</title>
+      <link>https://lizrotenblog.netlify.com/tags/mental-health/</link>
+      <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/mental-health/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>quantitative self</title>
+      <link>https://lizrotenblog.netlify.com/tags/quantitative-self/</link>
+      <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/quantitative-self/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R Markdown</title>
+      <link>https://lizrotenblog.netlify.com/tags/r-markdown/</link>
+      <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/r-markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tutorial</title>
+      <link>https://lizrotenblog.netlify.com/tags/tutorial/</link>
+      <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/tutorial/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
