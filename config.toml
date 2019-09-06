@@ -1,4 +1,4 @@
-baseURL = "https://lizrotenblog.netlify.com/"
+baseURL = "https://lizrotenblog.netlify.com/blog/"
 languageCode = "en-us"
 title = "Liz Roten"
 theme = "ezhil"
@@ -32,7 +32,7 @@ weight = 1
 
 [[menu.main]]
 name = "All posts"
-url = "/blog/posts"
+url = "/posts"
 weight = 2
 
 [[menu.main]]
