@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>quantitative self on Liz Roten</title>
-    <link>/blog/tags/quantitative-self/</link>
+    <link>/tags/quantitative-self/</link>
     <description>Recent content in quantitative self on Liz Roten</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 31 Aug 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/blog/tags/quantitative-self/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/quantitative-self/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Visualizing mental health data with ggplot2</title>
-      <link>/blog/posts/emoods/emoods/</link>
+      <link>/posts/emoods/emoods/</link>
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/posts/emoods/emoods/</guid>
+      <guid>/posts/emoods/emoods/</guid>
       <description>Things I love include data visualization, tutorials, and fighting mental illness stigma. This post combines them all! I made a pretty neat layout with plots and a map of my Location History a while back, and here I’ll walk through some of the data cleaning process and custom styling.
 Export and download app dataI use eMoods to track my mental health from day to day. I’m a superfan of this app.</description>
     </item>
