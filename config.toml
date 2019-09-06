@@ -1,4 +1,4 @@
-baseURL = "https://lizrotenblog.netlify.com/"
+baseURL = "/blog"
 languageCode = "en-us"
 title = "Liz Roten"
 theme = "ezhil"
