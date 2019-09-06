@@ -1,0 +1,99 @@
+/* your styles go here */
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: "PT Sans", Helvetica, Arial, sans-serif;
+	font-weight: 700;
+	line-height: 1.2;
+	color: #000000;
+}
+
+.sidebar-heading {
+	font-size: xx-large;
+  text-transform: none;
+	letter-spacing: none;
+}
+
+.sidebar-p {
+	color: #1E1C1D;
+	font-size: medium;
+}
+
+.sidebar-menu {
+	list-style-type: none;
+	padding-left: 20px;
+	margin-bottom: 40px;
+	text-decoration: underline;
+}
+
+body {
+	font-family: "Didact Gothic", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.55;
+	color: #1E1C1D;
+}
+
+.copyright p.credit {
+	margin-bottom: 10px;
+	font-size: xx-small;
+}
+
+.container-fluid {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	background: #CEBEA1;
+  
+}
+
+.content-column-content p, .content-column-content li {
+	color: gray;
+}
+
+.sidebar-menu li:hover a {
+	text-decoration: none;
+	color: #D77C36;
+}
+
+p.social a {
+	margin: 0 10px 10px 0;
+	color: #fff;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	line-height: 40px;
+	font-size: 15px;
+	text-align: center;
+	vertical-align: bottom;
+	border: solid 1px #62262D;
+	color: #62262D;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+
+p.social a:hover {
+	color: #D77C36;
+	border-color: #D77C36;
+}
+
+
+.box-masonry .box-masonry-text {
+	padding: 15px 20px 15px;
+	background: gainsboro;
+	color: #1E1C1D;
+}
+
+code {
+	padding: 2px 4px;
+	font-size: 90%;
+	color: #62262D;
+	border-radius: 4px;
+}
+
+.content-column-content {
+	padding-left: 20px;
+	padding-right: 20px;
+	/* width: max-content; */
+}
