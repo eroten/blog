@@ -3,12 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/blog/blog/about/</loc>
-    <lastmod>2019-04-19T21:37:58+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lizrotenblog.netlify.com/blog/blog/</loc>
+    <loc>https://lizrotenblog.netlify.com/blog/about/</loc>
     <lastmod>2019-04-19T21:37:58+05:30</lastmod>
   </url>
   
@@ -18,7 +13,12 @@
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/blog/tags/</loc>
+    <loc>https://lizrotenblog.netlify.com/</loc>
+    <lastmod>2019-04-19T21:37:58+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lizrotenblog.netlify.com/tags/</loc>
   </url>
   
 </urlset>
