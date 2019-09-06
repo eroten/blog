@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/</loc>
+    <lastmod>2019-08-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/emoods/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
   </url>
@@ -19,11 +24,6 @@
   
   <url>
     <loc>/tags/mental-health/</loc>
-    <lastmod>2019-08-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/posts/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
   </url>
   
@@ -48,7 +48,7 @@
   </url>
   
   <url>
-    <loc>/posts/emoods/emoods/</loc>
+    <loc>/blog/posts/emoods/emoods/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
   </url>
   
