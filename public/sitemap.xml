@@ -3,11 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/blog/</loc>
-    <lastmod>2019-08-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://lizrotenblog.netlify.com/tags/emoods/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
   </url>
@@ -24,6 +19,11 @@
   
   <url>
     <loc>https://lizrotenblog.netlify.com/tags/mental-health/</loc>
+    <lastmod>2019-08-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lizrotenblog.netlify.com/posts/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
   </url>
   
@@ -48,13 +48,8 @@
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/blog/posts/emoods/emoods/</loc>
+    <loc>https://lizrotenblog.netlify.com/posts/emoods/emoods/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lizrotenblog.netlify.com/blog/about/</loc>
-    <lastmod>2019-04-19T21:37:58+05:30</lastmod>
   </url>
   
 </urlset>

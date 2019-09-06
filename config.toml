@@ -10,6 +10,7 @@ relativeURLs = true
 
 googleAnalytics = ""
 disqusShortname = ""
+enableEmoji = true
 
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
@@ -17,10 +18,12 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 	subtitle = ""
 	# Number of posts to show in recent posts list.
 	recentPostsCount = 10
+	copyright = "&copy;2019 Liz Roten"
 	# Content types which are excluded from recent posts and archive page.
 	excludedTypes = ["page"]
 	disableDisqusTypes = ["page"]
 	featherIconsCDN = true
+	dateFormat = "2006/01/02"
 
 [[menu.main]]
 name = "Home"
