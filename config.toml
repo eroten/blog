@@ -35,10 +35,5 @@ name = "All posts"
 url = "/posts"
 weight = 2
 
-[[menu.main]]
-name = "Tags"
-url = "/tags"
-weight = 4
-
 [taxonomies]
    tag = "tags"
