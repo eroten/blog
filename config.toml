@@ -27,12 +27,12 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [[menu.main]]
 name = "Home"
-url = "/"
+url = "https://lizroten.info"
 weight = 1
 
 [[menu.main]]
 name = "All posts"
-url = "/posts"
+url = "https://lizroten.info/blog/posts"
 weight = 2
 
 [taxonomies]
