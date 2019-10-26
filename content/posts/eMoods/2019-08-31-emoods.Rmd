@@ -405,7 +405,7 @@ ggplot(data = plot_data %>%
 anim_save("2018_moods.gif")
 ```
 
-![](/eMoods/2019-08-31-emoods_files/2018_moods.gif)  
+![](eMoods/2019-08-31-emoods_files/2018_moods.gif)  
   
 Lets take a look at seaons. Lets find the total intensity grouped by year, season, and mood.  
 
@@ -471,7 +471,7 @@ ggplot(data = plot_seaons %>%
 gganimate::anim_save(file = "moods_by_season_year.gif")
 ```
 
-![](/eMoods/2019-08-31-emoods_files/moods_by_season_year.gif)  
+![](eMoods/2019-08-31-emoods_files/moods_by_season_year.gif)  
   
 ## Inspiration and credits  
 
