@@ -17,8 +17,7 @@
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://lizrotenblog.netlify.com/posts/emoods/emoods/</guid>
-      <description>Things I love include data visualization, tutorials, and fighting mental illness stigma. This post combines them all! I made a pretty neat layout with plots and a map of my Location History a while back, and here I’ll walk through some of the data cleaning process and custom styling.
-Export and download app dataI use eMoods to track my mental health from day to day. I’m a superfan of this app.</description>
+      <description>Export and download app dataClean and tidyVisualize moods over time with ggplot2Custom stylesOctober 2019 update: now with gganimate!Inspiration and creditsThings I love include data visualization, tutorials, and fighting mental illness stigma. This post combines them all! I made a pretty neat layout with plots and a map of my Location History a while back, and here I’ll walk through some of the data cleaning process and custom styling.</description>
     </item>
     
   </channel>
