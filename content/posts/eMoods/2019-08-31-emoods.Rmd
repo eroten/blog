@@ -26,7 +26,8 @@ output:
 ---
 
 ```{r setup, include=FALSE, message=FALSE, warning = FALSE}
-knitr::opts_chunk$set(dev = "CairoPNG", dpi = 300)
+knitr::opts_chunk$set(dev = "CairoPNG", dpi = 300,
+                      gganimate.dev_args = list(res=96))
 ```
 
 Things I love include data visualization, tutorials, and fighting mental illness stigma. This post combines them all! I made a pretty neat [layout](https://lizroten.info/portfolio/3-years-of-mental-health-a-quantified-self-story/) with plots and a map of my Location History a while back, and here I'll walk through some of the data cleaning process and custom styling.   
@@ -106,10 +107,8 @@ First, lets load  go for a simple bar plot.
 library(ggplot2)
 
 ggplot(data = entry) +
-  geom_bar(
-    mapping = aes(x = date, y = depressed),
-    stat = "identity"
-  )
+  geom_col(
+    mapping = aes(x = date, y = depressed))
 ```
 
 We can see some peaks here and there. This plot isn't super attractive. Now we can start getting into the fun (or tedious, depending on who you ask) stuff.    
@@ -118,9 +117,8 @@ Here, I filter the data to only include 2018, add monthly scale labels, and chan
 
 ```{r}
 ggplot(data = filter(entry, year == 2018)) + # filter to only include 2018
-  geom_bar(
+  geom_col(
     mapping = aes(x = date, y = depressed),
-    stat = "identity", # use identity because we already have the values we want plotted
     color = "#426486",
     fill = "#426486"
   ) +
@@ -236,13 +234,12 @@ This plot facets by mood, and only includes anxiety and depression.
 
 ```{r}
 ggplot(data = plot_data) +
-  geom_bar(
+  geom_col(
     mapping = aes(
       x = date,
       y = intensity,
       fill = mood
     ),
-    stat = "identity",
     color = NA
   ) +
   facet_wrap("mood",
@@ -274,12 +271,11 @@ ggplot(data = filter(
   plot_data_2018,
   mood == "depressed"
 )) +
-  geom_bar(
+  geom_col(
     mapping = aes(
       x = date,
       y = intensity,
     ),
-    stat = "identity",
     fill = my_colors[2],
     color = my_colors[2]
   ) +
@@ -307,13 +303,12 @@ ggsave(filename = "depression_2018.png", dpi = "print", type = "cairo")
 
 ```{r, dev="CairoPNG",collapse=TRUE}
 ggplot(data = plot_data_2018) +
-  geom_bar(
+  geom_col(
     mapping = aes(
       x = date,
       y = intensity,
       fill = mood
     ),
-    stat = "identity",
     color = NA
   ) +
   facet_wrap("mood",
@@ -361,22 +356,17 @@ I've made a series of iterative plots for work, and I finally decided to try [gg
 library(gganimate)
 ```
 
-```{r, eval = FALSE}
+```{r,eval=FALSE}
 ggplot(data = plot_data %>% 
          filter(year(date) == 2018)) +
-  geom_bar(
+  geom_col(
     mapping = aes(
       x = date,
       y = intensity,
       fill = mood,
       group = 1L),
-    stat = "identity",
     color = NA
   ) +
-  # facet_wrap("mood",
-  #   nrow = 2,
-  #   ncol = 1
-  # ) +
   scale_fill_manual(
     values = my_colors,
     aesthetics = c("fill"),
@@ -398,19 +388,22 @@ ggplot(data = plot_data %>%
   transition_states(mood,
                     transition_length = 2,
                     state_length = 1) +
-  ggtitle("Moood intensity, 2018",
+  ggtitle("Mood intensity, 2018",
           subtitle = '{closest_state}')
 ```
 ```{r, eval = FALSE, include = FALSE}
 anim_save("2018_moods.gif")
 ```
 
-![](eMoods/2019-08-31-emoods_files/2018_moods.gif)  
+<center>  
+<img src="2018_moods.gif" style = "width: 480px;" >  
+</center>    
+   
   
 Lets take a look at seaons. Lets find the total intensity grouped by year, season, and mood.  
 
 ```{r}
-plot_seaons <- entry %>% 
+plot_seasons <- entry %>% 
   group_by(date) %>%
   gather("depressed", "anxiety",
          "elevated", "irritability",
@@ -421,7 +414,11 @@ plot_seaons <- entry %>%
   mutate(season = case_when(month(date) %in% c("12", "1", "2") ~ "Winter",
                             month(date) %in% c("3", "4", "5") ~ "Spring",
                             month(date) %in% c("6", "7", "8") ~ "Summer",
-                            month(date) %in% c("9", "10", "11") ~ "Fall")) %>% 
+                            month(date) %in% c("9", "10", "11") ~ "Fall"),
+         season = factor(season, levels = c("Winter",
+                                            "Spring",
+                                            "Summer",
+                                            "Fall"))) %>% 
   group_by(year, season, mood) %>% 
   mutate(total_mood = sum(intensity)) %>% 
   select(-date, -intensity) %>% 
@@ -430,22 +427,21 @@ plot_seaons <- entry %>%
 
 
 
-```{r,eval = FALSE}
-ggplot(data = plot_seaons %>% 
+```{r,eval=FALSE, ani.res = 300}
+ggplot(data = plot_seasons %>% 
          filter(!year %in% c(2015, 2019))) +
-  geom_bar(
+  geom_col(
     mapping = aes(
       x = mood,
       y = total_mood,
       fill = mood,
       group = 1L),
-    stat = "identity",
     color = NA
   ) +
   scale_fill_manual(
     values = my_colors, 
     labels = c("Anxiety",
-               "Depressiion",
+               "Depression",
                "Elevation",
                "Irritability")
   ) +
@@ -471,8 +467,10 @@ ggplot(data = plot_seaons %>%
 gganimate::anim_save(file = "moods_by_season_year.gif")
 ```
 
-![](eMoods/2019-08-31-emoods_files/moods_by_season_year.gif)  
-  
+<center>  
+<img src="moods_by_season_year.gif" style = "width: 480px;" >  
+</center>    
+
 ## Inspiration and credits  
 
 * This [amazing bivariate choropleth map](https://timogrossenbacher.ch/2019/04/bivariate-maps-with-ggplot2-and-sf/) by [Tim Grossenbacher](https://timogrossenbacher.ch/).  

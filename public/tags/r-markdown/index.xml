@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R Markdown on Liz Roten</title>
-    <link>https://lizrotenblog.netlify.com/tags/r-markdown/</link>
+    <link>/tags/r-markdown/</link>
     <description>Recent content in R Markdown on Liz Roten</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 31 Aug 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://lizrotenblog.netlify.com/tags/r-markdown/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/r-markdown/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Visualizing mental health data with ggplot2</title>
-      <link>https://lizrotenblog.netlify.com/posts/emoods/emoods/</link>
+      <link>/posts/emoods/emoods/</link>
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/posts/emoods/emoods/</guid>
+      <guid>/posts/emoods/emoods/</guid>
       <description>Export and download app dataClean and tidyVisualize moods over time with ggplot2Custom stylesOctober 2019 update: now with gganimate!Inspiration and creditsThings I love include data visualization, tutorials, and fighting mental illness stigma. This post combines them all! I made a pretty neat layout with plots and a map of my Location History a while back, and here I’ll walk through some of the data cleaning process and custom styling.</description>
     </item>
     

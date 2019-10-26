@@ -6,7 +6,7 @@
 	<meta property="og:title" content="Visualizing mental health data with ggplot2" />
 <meta property="og:description" content="Things I love include data visualization, tutorials, and fighting mental illness stigma. This post combines them all!" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lizrotenblog.netlify.com/posts/emoods/emoods/" />
+<meta property="og:url" content="/posts/emoods/emoods/" />
 <meta property="article:published_time" content="2019-08-31T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-08-31T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
@@ -180,17 +180,14 @@ head(entry)</code></pre>
 <pre class="r"><code>library(ggplot2)
 
 ggplot(data = entry) +
-  geom_bar(
-    mapping = aes(x = date, y = depressed),
-    stat = &quot;identity&quot;
-  )</code></pre>
+  geom_col(
+    mapping = aes(x = date, y = depressed))</code></pre>
 <p><img src="../../../posts/eMoods/2019-08-31-emoods_files/figure-html/unnamed-chunk-6-1.png" width="2100" /></p>
 <p>We can see some peaks here and there. This plot isn’t super attractive. Now we can start getting into the fun (or tedious, depending on who you ask) stuff.</p>
 <p>Here, I filter the data to only include 2018, add monthly scale labels, and change the coordinate system from cartesian to polar. This produces a radial bar graph, also known as a star plot, polar coordinate plot, or whatever else. I used <code>labs()</code> to add a title and changed the fill and color to #426486 (a lovely dark blue).</p>
 <pre class="r"><code>ggplot(data = filter(entry, year == 2018)) + # filter to only include 2018
-  geom_bar(
+  geom_col(
     mapping = aes(x = date, y = depressed),
-    stat = &quot;identity&quot;, # use identity because we already have the values we want plotted
     color = &quot;#426486&quot;,
     fill = &quot;#426486&quot;
   ) +
@@ -290,13 +287,12 @@ my_theme &lt;- function(...) {
 }</code></pre>
 <p>This plot facets by mood, and only includes anxiety and depression.</p>
 <pre class="r"><code>ggplot(data = plot_data) +
-  geom_bar(
+  geom_col(
     mapping = aes(
       x = date,
       y = intensity,
       fill = mood
     ),
-    stat = &quot;identity&quot;,
     color = NA
   ) +
   facet_wrap(&quot;mood&quot;,
@@ -325,12 +321,11 @@ my_theme &lt;- function(...) {
   plot_data_2018,
   mood == &quot;depressed&quot;
 )) +
-  geom_bar(
+  geom_col(
     mapping = aes(
       x = date,
       y = intensity,
     ),
-    stat = &quot;identity&quot;,
     fill = my_colors[2],
     color = my_colors[2]
   ) +
@@ -351,13 +346,12 @@ my_theme &lt;- function(...) {
   my_theme()</code></pre>
 <p><img src="../../../posts/eMoods/2019-08-31-emoods_files/figure-html/unnamed-chunk-12-1.png" width="2100" /></p>
 <pre class="r"><code>ggplot(data = plot_data_2018) +
-  geom_bar(
+  geom_col(
     mapping = aes(
       x = date,
       y = intensity,
       fill = mood
     ),
-    stat = &quot;identity&quot;,
     color = NA
   ) +
   facet_wrap(&quot;mood&quot;,
@@ -398,19 +392,14 @@ my_theme &lt;- function(...) {
 <pre class="r"><code>library(gganimate)</code></pre>
 <pre class="r"><code>ggplot(data = plot_data %&gt;% 
          filter(year(date) == 2018)) +
-  geom_bar(
+  geom_col(
     mapping = aes(
       x = date,
       y = intensity,
       fill = mood,
       group = 1L),
-    stat = &quot;identity&quot;,
     color = NA
   ) +
-  # facet_wrap(&quot;mood&quot;,
-  #   nrow = 2,
-  #   ncol = 1
-  # ) +
   scale_fill_manual(
     values = my_colors,
     aesthetics = c(&quot;fill&quot;),
@@ -432,11 +421,13 @@ my_theme &lt;- function(...) {
   transition_states(mood,
                     transition_length = 2,
                     state_length = 1) +
-  ggtitle(&quot;Moood intensity, 2018&quot;,
+  ggtitle(&quot;Mood intensity, 2018&quot;,
           subtitle = &#39;{closest_state}&#39;)</code></pre>
-<p><img src="eMoods/2019-08-31-emoods_files/2018_moods.gif" /></p>
+<center>
+<img src="2018_moods.gif" style = "width: 480px;" >
+</center>
 <p>Lets take a look at seaons. Lets find the total intensity grouped by year, season, and mood.</p>
-<pre class="r"><code>plot_seaons &lt;- entry %&gt;% 
+<pre class="r"><code>plot_seasons &lt;- entry %&gt;% 
   group_by(date) %&gt;%
   gather(&quot;depressed&quot;, &quot;anxiety&quot;,
          &quot;elevated&quot;, &quot;irritability&quot;,
@@ -447,26 +438,29 @@ my_theme &lt;- function(...) {
   mutate(season = case_when(month(date) %in% c(&quot;12&quot;, &quot;1&quot;, &quot;2&quot;) ~ &quot;Winter&quot;,
                             month(date) %in% c(&quot;3&quot;, &quot;4&quot;, &quot;5&quot;) ~ &quot;Spring&quot;,
                             month(date) %in% c(&quot;6&quot;, &quot;7&quot;, &quot;8&quot;) ~ &quot;Summer&quot;,
-                            month(date) %in% c(&quot;9&quot;, &quot;10&quot;, &quot;11&quot;) ~ &quot;Fall&quot;)) %&gt;% 
+                            month(date) %in% c(&quot;9&quot;, &quot;10&quot;, &quot;11&quot;) ~ &quot;Fall&quot;),
+         season = factor(season, levels = c(&quot;Winter&quot;,
+                                            &quot;Spring&quot;,
+                                            &quot;Summer&quot;,
+                                            &quot;Fall&quot;))) %&gt;% 
   group_by(year, season, mood) %&gt;% 
   mutate(total_mood = sum(intensity)) %&gt;% 
   select(-date, -intensity) %&gt;% 
   unique()</code></pre>
-<pre class="r"><code>ggplot(data = plot_seaons %&gt;% 
+<pre class="r"><code>ggplot(data = plot_seasons %&gt;% 
          filter(!year %in% c(2015, 2019))) +
-  geom_bar(
+  geom_col(
     mapping = aes(
       x = mood,
       y = total_mood,
       fill = mood,
       group = 1L),
-    stat = &quot;identity&quot;,
     color = NA
   ) +
   scale_fill_manual(
     values = my_colors, 
     labels = c(&quot;Anxiety&quot;,
-               &quot;Depressiion&quot;,
+               &quot;Depression&quot;,
                &quot;Elevation&quot;,
                &quot;Irritability&quot;)
   ) +
@@ -487,7 +481,9 @@ my_theme &lt;- function(...) {
                     transition_length = 2,
                     state_length = 3) +
   ggtitle(&quot;Mood intensity, {closest_state}&quot;)</code></pre>
-<p><img src="eMoods/2019-08-31-emoods_files/moods_by_season_year.gif" /></p>
+<center>
+<img src="moods_by_season_year.gif" style = "width: 480px;" >
+</center>
 </div>
 <div id="inspiration-and-credits" class="section level2">
 <h2>Inspiration and credits</h2>
