@@ -104,3 +104,7 @@ code, kbd, pre, samp {
 	padding-right: 20px;
 	/* width: max-content; */
 }
+
+ul {
+	list-style: disc;
+}
