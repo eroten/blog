@@ -86,10 +86,17 @@ p.social a:hover {
 }
 
 code {
-	padding: 2px 4px;
 	font-size: 90%;
 	color: #62262D;
 	border-radius: 4px;
+}
+
+
+code, kbd, pre, samp {
+	font-family: monospace,monospace;
+	font-size: 1em;
+	background: #e6e6e6;
+	padding: 4px;
 }
 
 .content-column-content {
