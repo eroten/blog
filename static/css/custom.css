@@ -1,8 +1,8 @@
 /* your styles go here */
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-	font-family: "PT Sans", Helvetica, Arial, sans-serif;
-	font-weight: 700;
+	font-family: "Roboto", Helvetica, Arial, sans-serif;
+	font-weight: 400;
 	line-height: 1.2;
 	color: #000000;
 }
@@ -93,8 +93,8 @@ code {
 
 
 code, kbd, pre, samp {
-	font-family: monospace,monospace;
-	font-size: 1em;
+	font-family: consolas;
+	font-size: 14px;
 	background: #e6e6e6;
 	padding: 4px;
 }
@@ -106,5 +106,13 @@ code, kbd, pre, samp {
 }
 
 ul {
-	list-style: disc;
+	list-style: revert;
+}
+
+.header nav {
+	margin-top: 0px;
+	border-top: 1px solid #f4f4f4;
+	border-bottom: black;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
 }

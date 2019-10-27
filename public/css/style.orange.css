@@ -1949,7 +1949,7 @@ h6,
 .h5,
 .h6 {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.2;
   color: #000000;
 }
@@ -1964,22 +1964,22 @@ h2,
 h3,
 .h3 {
   font-size: 32px;
-  font-weight: 700;
+  font-weight: 200;
 }
 h4,
 .h4 {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 200;
 }
 h5,
 .h5 {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 200;
 }
 h6,
 .h6 {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 200;
 }
 h1,
 .h1,
