@@ -134,7 +134,8 @@ DT::datatable(meta_table,
                            "description"))
 ```
 
-To keep everything straight, I join this table with our `sf` object.  
+To keep everything straight, I join this table with our `sf` object.   
+
 ```{r}
 saucier_meta <- saucier %>% 
   dplyr::left_join(meta_table, by = c("Formation" = "item")) %>% 
@@ -143,7 +144,7 @@ saucier_meta <- saucier %>%
   st_as_sf()
 ```
 
-I also downloaded a recent shapefile of the Mississippi River in the state of [Mississippi](https://www.maris.state.ms.us/HTML/DATA/data_Hydrology/MississippiRiver.html) 
+I also downloaded a recent shapefile of the Mississippi River in the state of [Mississippi](https://www.maris.state.ms.us/HTML/DATA/data_Hydrology/MississippiRiver.html). 
 
 ```{r, eval = FALSE}
 ms_r_1983 <- readOGR("data/gis/ms_r/ms_r.shp") %>%
@@ -154,7 +155,7 @@ ms_r_1983 <- readOGR("data/gis/ms_r/ms_r.shp") %>%
 ms_r_1983 <- readRDS("2019-10-27-assets/ms_r_1983.RDS")
 ```
 
-I then saved my own gggplot2 theme object and a few colors. Notice that I establish the font sizes all in one place, which makes it much easier to make small adjustments that will affect multiple aspects. I adjusted this theme frequently as I went along (I didn't magically find all the right adjustments in one shot :wink:)  
+I then saved my own gggplot2 theme object and a few colors. Notice that I establish the font sizes all in one place, which makes it much easier to make small adjustments that will affect multiple aspects. I adjusted this theme frequently as I went along (I didn't magically find all the right adjustments in one shot :wink:).  
 
 ```{r}
 library(showtext)
@@ -466,8 +467,7 @@ all_states <- get_estimates(geography = "state",
   unique()
 ```
 
-
-The neighborhood
+Lets take a look at what we got from tidycensus.  
 
 ```{r}
 ggplot() +
@@ -551,7 +551,7 @@ I don't make static maps as often as I used to, so it was a bit weird doing map 
 
 ![Edited map of Mississippi River with Pleistocene features](/posts/2019-10-27-fisk-s-mississippi-river-meander-in-r_files/final_map.png)  
 
-I'm still not quite happy with the un-used white space on the right, but, hey, I'll take it.  :bow:
+I'm still not quite happy with the un-used white space on the right, but, hey, I'll take it :bow:.
 
 ### Notes   
 

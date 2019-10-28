@@ -141,11 +141,11 @@ DT::datatable(meta_table,
   dplyr::left_join(meta_table, by = c(&quot;Geo_Age&quot; = &quot;item&quot;)) %&gt;% 
   dplyr::select(-item_desc.x) %&gt;% 
   st_as_sf()</code></pre>
-<p>I also downloaded a recent shapefile of the Mississippi River in the state of <a href="https://www.maris.state.ms.us/HTML/DATA/data_Hydrology/MississippiRiver.html">Mississippi</a></p>
+<p>I also downloaded a recent shapefile of the Mississippi River in the state of <a href="https://www.maris.state.ms.us/HTML/DATA/data_Hydrology/MississippiRiver.html">Mississippi</a>.</p>
 <pre class="r"><code>ms_r_1983 &lt;- readOGR(&quot;data/gis/ms_r/ms_r.shp&quot;) %&gt;%
   st_as_sf() %&gt;%
   sf::st_transform(&quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;)</code></pre>
-<p>I then saved my own gggplot2 theme object and a few colors. Notice that I establish the font sizes all in one place, which makes it much easier to make small adjustments that will affect multiple aspects. I adjusted this theme frequently as I went along (I didn’t magically find all the right adjustments in one shot :wink:)</p>
+<p>I then saved my own gggplot2 theme object and a few colors. Notice that I establish the font sizes all in one place, which makes it much easier to make small adjustments that will affect multiple aspects. I adjusted this theme frequently as I went along (I didn’t magically find all the right adjustments in one shot :wink:).</p>
 <pre class="r"><code>library(showtext)
 showtext_auto()
 file &lt;- sysfonts::font_files()
@@ -425,7 +425,7 @@ primary</code></pre>
                             product = &quot;population&quot;) %&gt;% 
   dplyr::select(NAME) %&gt;% 
   unique()</code></pre>
-<p>The neighborhood</p>
+<p>Lets take a look at what we got from tidycensus.</p>
 <pre class="r"><code>ggplot() +
   geom_sf(data = all_states,
           fill = &quot;whitesmoke&quot;,
@@ -497,7 +497,7 @@ inset &lt;- as_grob(inset)</code></pre>
 <img src="/posts/2019-10-27-fisk-s-mississippi-river-meander-in-r_files/final_map.png" alt="" />
 <p class="caption">Edited map of Mississippi River with Pleistocene features</p>
 </div>
-<p>I’m still not quite happy with the un-used white space on the right, but, hey, I’ll take it. :bow:</p>
+<p>I’m still not quite happy with the un-used white space on the right, but, hey, I’ll take it :bow:.</p>
 <div id="notes" class="section level3">
 <h3>Notes</h3>
 <p>Colors were inspired by the original map. I extracted the exact values using <a href="https://www.lifewire.com/generate-a-color-scheme-from-image-1701671">GIMP</a>.</p>
