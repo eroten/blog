@@ -9,7 +9,7 @@ pygmentscodefencesguesssyntax = true
 relativeURLs = true
 
 googleAnalytics = ""
-disqusShortname = ""
+disqusShortname = "eroten-info"
 enableEmoji = true
 
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
