@@ -39,7 +39,7 @@ Those of us even mildly obsessed with maps will be familiar with Harold Fisk's 1
 
 Even viewing on a screen, its easy to see how you can get lost in the map. The colors are distinct and vivid, and the contextual information, like political boundaries and fault lines, against the aged sepia base do not distract. The map is dynamic, with irregular shapes and curves. If not done right, the messiness could overwhelm the viewer, but Fisk succeeds in capturing the audience's attention. The content itself makes you reconsider your relationship with this body of water. Seeing how it has moved and changed course over time reminds you of how small, short and insignificant our lives can be compared to the Earth's natural history.   
 
-!["Alluvial Valley of the Lower Mississippi River by Harold Fisk, 1944" courtesy of Radical Cartography](http://www.radicalcartography.net/fisk/fisk07.jpg) 
+!["Alluvial Valley of the Lower Mississippi River by Harold Fisk, 1944" courtesy of Atlas of Places](https://www.atlasofplaces.com/atlas-of-places-images/_scaled/ATLAS-OF-PLACES-ARMY-CORPS-OF-ENGINEERS-MISSISSIPPI-RIVER-MEANDER-BELT-GPH-7.jpg) 
 
 I *adore* this map. I won't attempt to fully recreate it here, but I want to explore the data behind it, and see what I can find.  
 
