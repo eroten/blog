@@ -2,21 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tutorial on Liz Roten</title>
-    <link>/tags/tutorial/</link>
+    <link>https://lizrotenblog.netlify.com/tags/tutorial/</link>
     <description>Recent content in tutorial on Liz Roten</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 31 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Feb 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://lizrotenblog.netlify.com/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Housing Density in US Cities</title>
+      <link>https://lizrotenblog.netlify.com/posts/housing-density-in-us-cities/</link>
+      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/posts/housing-density-in-us-cities/</guid>
+      <description>Since I got back from #rstudioconf, I’ve started to warm up to the idea of sharing my code, even if it isn’t perfect. There may be typos, the blog post may be short, but sharing my work is beneficial for the greater #rstats community, and supports open-source data science.
+So this belated post is inspired by Cities Start to Question an American Ideal: A House With a Yard on Every Lot, in which the NY Times examines residential zoning patterns in different cities.</description>
+    </item>
+    
+    <item>
       <title>Visualizing mental health data with ggplot2</title>
-      <link>/posts/2019-08-31-emoods/</link>
+      <link>https://lizrotenblog.netlify.com/posts/2019-08-31-emoods/</link>
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019-08-31-emoods/</guid>
+      <guid>https://lizrotenblog.netlify.com/posts/2019-08-31-emoods/</guid>
       <description>Export and download app dataClean and tidyVisualize moods over time with ggplot2Custom stylesOctober 2019 update now with gganimate!Inspiration and creditsThings I love include data visualization, tutorials, and fighting mental illness stigma. This post combines them all! I made a pretty neat layout with plots and a map of my Location History a while back, and here I’ll walk through some of the data cleaning process and custom styling.</description>
     </item>
     

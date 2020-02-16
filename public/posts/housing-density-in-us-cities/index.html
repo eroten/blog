@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Housing Density in US Cities - Liz Roten</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Housing Density in US Cities" />
+<meta property="og:description" content="Examining residential zoning in Pittsburgh, Austin, and Boston" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lizrotenblog.netlify.com/posts/housing-density-in-us-cities/" />
+<meta property="article:published_time" content="2020-02-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-02-15T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Housing Density in US Cities"/>
+<meta name="twitter:description" content="Examining residential zoning in Pittsburgh, Austin, and Boston"/>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Raleway:500,100,300" rel="stylesheet">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,300,700,400italic">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,300,700,400">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,400">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Serif:400,300,700,400">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Didact+Gothic:400,300,700,400">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/custom.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/style.orange.css" /><script src="../../js/main.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper post">
+		<div class="header">
+	<h1 class="site-title">Liz Roten</h1>
+	<div class="site-description"><h2></h2><nav class="nav social">
+			<ul class="flat"></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="../../">Home</a>
+			</li>
+			
+			<li>
+				<a href="../../posts">All posts</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post-header">
+			<h1 class="title">Housing Density in US Cities</h1>
+			<div class="meta">Posted at &mdash; Feb 15, 2020</div>
+		</div>
+
+		<div class="markdown">
+			
+<script src="../../rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="../../rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="../../rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="../../rmarkdown-libs/datatables-binding/datatables.js"></script>
+<link href="../../rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="../../rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="../../rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="../../rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="../../rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+
+
+<p>Since I got back from #rstudioconf, I’ve started to warm up to the idea of sharing my code, even if it isn’t perfect. There may be typos, the blog post may be short, but sharing my work is beneficial for the greater #rstats community, and supports open-source data science.</p>
+<p>So this belated post is inspired by <a href="https://www.nytimes.com/interactive/2019/06/18/upshot/cities-across-america-question-single-family-zoning.html">Cities Start to Question an American Ideal: A House With a Yard on Every Lot</a>, in which the NY Times examines residential zoning patterns in different cities. Residential areas are split into two categories, single-family detached homes and all other housing such as townhomes, duplexes, and apartments. This is especially relevant given the current housing shortage across the US.</p>
+<div id="import-data" class="section level2">
+<h2>Import data</h2>
+<p>First, lets import our packages.</p>
+<pre class="r"><code># spatial packages 
+library(sf)
+library(geojsonsf)
+library(rgdal)
+library(lwgeom)
+
+# data cleaning
+library(dplyr)
+library(janitor)
+library(fuzzyjoin)
+library(stringr)
+
+# plotting
+library(ggplot2)
+library(showtext)
+library(DT)</code></pre>
+<p>Next, lets import our data. <code>read_sf()</code> is super useful here, because it will read in an <code>sf</code> object from a link to the spatial file we want. In this case, the link comes from each city’s open data portal</p>
+<p>When you go to the data portal and find the dataset you want, right click the link to download the GeoJSON and copy the link. Then, paste it into <code>read_sf()</code> and you’re good to go! Say goodbye to massive data folders!</p>
+<p>For this post, I’ve chosen (somewhat randomly) <a href="https://data.wprdc.org/dataset/zoning1">Pittsburgh, PA</a>, <a href="https://data.austintexas.gov/Locations-and-Maps/Land-Use-Inventory-Detailed/fj9m-h5qy">Austin, TX</a>, and <a href="https://data.boston.gov/dataset/zoning-subdistricts">Boston, MA</a>.</p>
+<pre class="r"><code>pitts &lt;- read_sf(&quot;http://pghgis-pittsburghpa.opendata.arcgis.com/datasets/e67592c2904b497b83ccf876fced7979_0.geojson&quot;)
+
+boston &lt;- read_sf(&quot;http://bostonopendata-boston.opendata.arcgis.com/datasets/b601516d0af44d1c9c7695571a7dca80_0.geojson?outSR={%22latestWkid%22:2249,%22wkid%22:102686}&quot;)
+
+austin &lt;- read_sf(&quot;https://data.austintexas.gov/api/geospatial/5rzy-nm5e?method=export&amp;format=GeoJSON&quot;)</code></pre>
+<p>Here is the styling I’m using on the maps.</p>
+<pre class="r"><code>showtext_auto()
+
+font_add(&quot;Lato&quot;, &quot;Lato-Regular.ttf&quot;)
+font_add(&quot;Open Sans Light&quot;, &quot;OpenSans-Light.ttf&quot;)
+font_add(&quot;PT Sans&quot;, &quot;PTSans-Regular.ttf&quot;)
+font_add(&quot;PT Serif&quot;, &quot;PTSerif-Regular.ttf&quot;)
+
+
+## font sizes --------------------------------------------
+size_header &lt;- 14
+size_subtitle &lt;- 12
+size_axis_title &lt;- 12
+size_legend_title &lt;- 12
+size_axis_text &lt;- 8
+size_legend_text &lt;- 8
+size_caption &lt;- 6
+
+## color -------------------------------------------------
+background_color &lt;- &quot;#ffffff&quot;
+
+blue &lt;- &quot;#66b2a9&quot;
+pink &lt;- &quot;#dd2292&quot;
+
+my_colors &lt;- c(
+  &quot;#9BABBF&quot;,
+  &quot;#8C694A&quot;,
+  &quot;#6C733C&quot;,
+  &quot;#D9B991&quot;
+)
+## theme function -----------------------------------------
+my_theme &lt;- function(...) {
+  theme_void() +
+    theme(
+      ### plot and panel-----------------------------------
+      plot.background = element_rect(
+        fill = background_color,
+        linetype = 0,
+        colour = NA
+      ),
+      panel.background = element_rect(
+        fill = background_color,
+        linetype = 0,
+        color = NA
+      ),
+      panel.grid = element_blank(),
+      plot.margin = unit(c(.5, .5, .2, .5), &quot;cm&quot;),
+      panel.border = element_blank(),
+      ### title and caption -------------------------------
+      title = element_text(family = &quot;PT Serif&quot;,
+                           size = size_header),
+      plot.caption = element_text(size = size_caption),
+      ### axis and strip text ------------------------------
+      strip.text = element_blank(),
+      axis.title = element_text(size = size_axis_title),
+      axis.text = element_blank(),
+      ## legend text ----------------------------------------
+      legend.text = element_text(
+        family = &quot;Open Sans Light&quot;,
+        size = size_legend_text
+      )
+    )
+}</code></pre>
+</div>
+<div id="pittsburgh" class="section level2">
+<h2>Pittsburgh</h2>
+<p>So, what are our column names?</p>
+<pre class="r"><code>names(pitts)</code></pre>
+<pre><code>##  [1] &quot;objectid&quot;         &quot;area&quot;             &quot;perimeter&quot;        &quot;zoning_&quot;         
+##  [5] &quot;zoning_id&quot;        &quot;zon_new&quot;          &quot;shape_leng&quot;       &quot;correctionlabel&quot; 
+##  [9] &quot;full_zoning_type&quot; &quot;legendtype&quot;       &quot;municode&quot;         &quot;status&quot;          
+## [13] &quot;created_user&quot;     &quot;created_date&quot;     &quot;last_edited_user&quot; &quot;last_edited_date&quot;
+## [17] &quot;Shape__Area&quot;      &quot;Shape__Length&quot;    &quot;geometry&quot;</code></pre>
+<p>We are most interested in the “legendtype” column.</p>
+<pre class="r"><code>unique(pitts$legendtype)</code></pre>
+<pre><code>##  [1] &quot;Planned Unit Development&quot;         &quot;Two-Unit Residential&quot;            
+##  [3] &quot;Urban Neighborhood Commercial&quot;    &quot;Single-Unit Detached Residential&quot;
+##  [5] &quot;Single-Unit Attached Residential&quot; &quot;Educational/Medical Institution&quot; 
+##  [7] &quot;Hillside  &quot;                       &quot;Parks&quot;                           
+##  [9] &quot;Multi-Unit Residential&quot;           &quot;Golden Triangle &quot;                
+## [11] &quot;Riverfront&quot;                       &quot;Neighborhood Industrial&quot;         
+## [13] &quot;Local Neighborhood Commercial &quot;   &quot;Highway Commercial&quot;              
+## [15] &quot;Urban Industrial&quot;                 &quot;Mount Oliver Borough&quot;            
+## [17] &quot;Three-Unit Residential&quot;           &quot;General Industrial  &quot;            
+## [19] &quot;Oakland Public Realm&quot;             &quot;Specially Planned&quot;               
+## [21] &quot;Neighborhood Office&quot;              &quot;Grandview Public Realm&quot;          
+## [23] &quot;Uptown Public Realm&quot;</code></pre>
+<p>These are useful descriptions! We will re-code them into three categories: single-family detached, not single-family detached, and non-residential.</p>
+<pre class="r"><code>pitts_clean &lt;- pitts %&gt;% 
+  rowwise() %&gt;% 
+  mutate(zone_simple = if(legendtype %in% c(&quot;Single-Unit Attached Residential&quot;,
+                                            &quot;Two-Unit Residential&quot;, 
+                                            &quot;Three-Unit Residential&quot;,
+                                            &quot;Multi-Unit Residential&quot;)){
+    zone_simple = &quot;non_sfd&quot;
+  } else if (legendtype == &quot;Single-Unit Detached Residential&quot;){
+    zone_simple = &quot;sfd&quot;
+  } else {
+    zone_simple = &quot;non_res&quot;
+  }) %&gt;% 
+  st_as_sf()</code></pre>
+<p>Now for the map!</p>
+<p>For the caption, we can take advantage of the “last_edited_date” column and automatically put in the correct date!</p>
+<pre class="r"><code>ggplot() +
+  geom_sf(data = pitts_clean,
+          aes(fill = zone_simple),
+          color = &quot;#C8C8C8&quot;,
+          size = 0.2,
+          alpha = 0.5) +
+  labs(title = &quot;Pittsburgh&quot;,
+       subtitle = &quot;Residential zoning&quot;,
+       fill = &quot;&quot;,
+       caption = paste(&quot;City of Pittsburgh,&quot;,
+                       format(pitts_clean$last_edited_date, &quot;%Y&quot;))) + 
+  my_theme() +
+  scale_fill_manual(values = c(&quot;whitesmoke&quot;, blue, pink),
+                    labels = c(&quot;Non-residential&quot;,
+                               &quot;Non-single family&quot;,
+                               &quot;Single family&quot;)) </code></pre>
+<p><img src="../../posts/2020-02-15-housing-density-in-us-cities_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>This map looks like its missing something, so I’m going to add in <a href="https://data.wprdc.org/dataset/allegheny-county-hydrology-areas">hydrology features.</a></p>
+<pre class="r"><code># import &quot;Allegheny County Hydrology Areas&quot; 
+
+pitt_water &lt;- read_sf(&quot;http://openac-alcogis.opendata.arcgis.com/datasets/9ff3941e47f74c609057cb60f4992852_0.geojson&quot;) %&gt;% 
+  lwgeom::st_make_valid() %&gt;% 
+  st_intersection(pitts) # instersect with city limits</code></pre>
+<pre class="r"><code>ggplot() +
+  geom_sf(data = pitts_clean,
+          aes(fill = zone_simple),
+          color = &quot;#C8C8C8&quot;,
+          size = 0.2,
+          alpha = 0.5) +
+  labs(title = &quot;Pittsburgh&quot;,
+       subtitle = &quot;Residential zoning&quot;,
+       fill = &quot;&quot;,
+       caption = paste(&quot;City of Pittsburgh,&quot;,
+                       format(pitts_clean$last_edited_date, &quot;%Y&quot;))) + 
+  my_theme() +
+  scale_fill_manual(values = c(&quot;whitesmoke&quot;, blue, pink),
+                    labels = c(&quot;Non-residential&quot;,
+                               &quot;Non-single family&quot;,
+                               &quot;Single family&quot;)) +
+  geom_sf(data = pitt_water,
+          fill = &quot;lightblue&quot;, 
+          color = &quot;NA&quot;)</code></pre>
+<p><img src="../../posts/2020-02-15-housing-density-in-us-cities_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="austin" class="section level2">
+<h2>Austin</h2>
+<p>Lets look at the column names for Austin.</p>
+<pre class="r"><code>names(austin)</code></pre>
+<pre><code>##  [1] &quot;created_by&quot;    &quot;shape_area&quot;    &quot;created_date&quot;  &quot;zoning_ztype&quot; 
+##  [5] &quot;objectid&quot;      &quot;shape_length&quot;  &quot;modified_by&quot;   &quot;modified_date&quot;
+##  [9] &quot;zoning_id&quot;     &quot;geometry&quot;</code></pre>
+<p>Next, we can look at “zoning_ztype.”</p>
+<pre class="r"><code>head(unique(austin$zoning_ztype))</code></pre>
+<pre><code>## [1] &quot;SF-3-H&quot;   &quot;I-RR&quot;     &quot;SF-3-NP&quot;  &quot;GR-CO-NP&quot; &quot;DMU&quot;      &quot;CS-V-CO&quot;</code></pre>
+<p>YIKES. Looks like we need a data dictionary.</p>
+<p>I would love to say that I elegantly extracted the zoning codes from the <a href="http://www.austintexas.gov/page/zoning-districts">city’s website</a>, but I ended up copying the HTML table to Excel and manipulating the columns from there. The text-to-columns tool is very useful fo instances like this. I also added codes “SF-4” and “MF”, which weren’t explicitly provided.</p>
+<pre class="r"><code>austin_desc &lt;- read.csv(&quot;data/zoning_descriptions.csv&quot;) %&gt;% 
+  clean_names()
+
+DT::datatable(austin_desc, rownames = FALSE)</code></pre>
+<div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","data":[["LA","SF-4B","MF-1","MF-4","MH","MF-2","GO","GR","DMU","CS-1","MI","DR","PUD","NBG","MF-5","SF-6","MF-3","MF-6","MF","NO","CR","L","W/LO","CH","LI","AV","P","ERC","SF-2","RR","SF-3","SF-5","SF-1","SF-4","LO","LR","CBD","CS","IP","R&amp;D","AG","TOD","TND","CO","NCCD","CVC","PDA","WO","MU","CURE","CDZ","CAZ","PSZ","DPZ","DCZ","SF-4A"],["Lake Austin Residence   ","Single Family Residence - Condominium ","Multi-Family Residence - Limited Density ","Multi-Family Residence - Moderate-High Density ","Mobile Home Residence   ","Multi-Family Residence - Low Density ","General Office    ","Community Commercial    ","Downtown Mixed Use   ","Commercial-Liquor Sales    ","Major Industry    ","Development Reserve    ","Planned Unit Development   ","North Burnet/Gateway District   ","Multi-Family Residence - High Density ","Townhouse &amp; Condominium Residence  ","Multi-Family Residence - Medium Density ","Multi-Family Residence - Highest Density ","Multifamily Residence","Neighborhood Office    ","Commercial Recreation    ","Lake Commercial    ","Warehouse Limited Office   ","Commercial Highway    ","Limited Industrial Services   ","Aviation Services    ","Public     ","East Riverside Corridor   ","Single Family Residence - Standard Lot","Rural Residence    ","Family Residence    ","Urban Family Residence   ","Single Family Residence - Large Lot","Single Family Residence","Limited Office    ","Neighborhood Commercial    ","Central Business District   ","General Commercial Services   ","Industrial Park    ","Research and Development   ","Agricultural     ","Transit-Oriented Development    ","Traditional Neighborhood District   ","Conditional overlay","Neighborhood Conservation Combining District ","Capitol View Corridor Combining District ","Planned Development Area Combining District","Waterfront Overlay Combining District","Mixed Use","Central Urban Redevelopment","Capitol Dominance Combining District","Congress Avenue Combining District","Sixth/Pecan Street Combining District","Downtown Parks Combining District","Downtown Creeks Combining District","Single Family Residence - Small Lot"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>code<\/th>\n      <th>description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>We are going to break up Austin into two separate datasets: one with residential zones, and the other with non-residential zones.</p>
+<p>We will join our spatial data with the code descriptions using “zoning_ztype”, then add a column for residential zoning type using <code>str_detect()</code>.</p>
+<pre class="r"><code>austin_w_desc &lt;- left_join(austin, 
+                           austin_desc,
+                           by = c(&quot;zoning_ztype&quot; = &quot;code&quot;))
+
+austin_coded &lt;- austin_w_desc %&gt;% 
+  group_by(objectid) %&gt;% 
+  mutate(residence_zone = # detect key character sequences and add 
+           case_when(stringr::str_detect(zoning_ztype, &quot;SF&quot;) ~ &quot;Single family&quot;,
+                     stringr::str_detect(zoning_ztype, &quot;MH&quot;) ~ &quot;Non-single family&quot;,
+                     stringr::str_detect(zoning_ztype, &quot;MF&quot;) ~ &quot;Non-single family&quot;,
+                     stringr::str_detect(zoning_ztype, &quot;LA&quot;) ~ &quot;Non-single family&quot;,
+                     stringr::str_detect(zoning_ztype, &quot;RR&quot;) ~ &quot;Non-single family&quot;,
+                     TRUE ~ &quot;Non-residential&quot;))</code></pre>
+<p>Now, lets map it! I adjusted the fill color for non-residential zones because the scale is much smaller than Pittsburgh.</p>
+<pre class="r"><code>ggplot()  +
+  geom_sf(data = austin_coded,
+          mapping = aes(fill = residence_zone),
+          color = NA,
+          alpha = 0.5) +
+  scale_fill_manual(values = c(&quot;snow3&quot;, blue, pink),
+                    labels = c(&quot;Non-residential&quot;,
+                               &quot;Non-single family&quot;,
+                               &quot;Single family&quot;)) +
+  labs(title = &quot;Austin&quot;,
+       subtitle = &quot;Residential zoning&quot;,
+       fill = &quot;&quot;,
+       caption = paste(&quot;City of Austin,&quot;,
+                       format(austin_coded$modified_date, &quot;%Y&quot;))) +
+  my_theme()</code></pre>
+<p><img src="../../posts/2020-02-15-housing-density-in-us-cities_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="boston" class="section level2">
+<h2>Boston</h2>
+<p>Lets check our column names.</p>
+<pre class="r"><code>names(boston) </code></pre>
+<pre><code>##  [1] &quot;OBJECTID&quot;         &quot;ZONE_&quot;            &quot;DISTRICT&quot;         &quot;MAPNO&quot;           
+##  [5] &quot;ARTICLE&quot;          &quot;SUBDISTRIC&quot;       &quot;Unique_Code&quot;      &quot;FAR&quot;             
+##  [9] &quot;Shape_STArea__&quot;   &quot;Shape_STLength__&quot; &quot;Zone_Desc&quot;        &quot;geometry&quot;</code></pre>
+<p>And then the “Zone_Desc” column.</p>
+<pre class="r"><code>head(unique(boston$Zone_Desc))</code></pre>
+<pre><code>## [1] &quot;Community Commercial&quot;          &quot;Waterfront Manufacturing&quot;     
+## [3] &quot;Restricted Manufacturing&quot;      &quot;Neighborhood Development Area&quot;
+## [5] &quot;Local Industrial&quot;              &quot;Waterfront Commercial&quot;</code></pre>
+<p>HA! Sweet, sweet human-readable descriptions!</p>
+<p>To make things a little easier, we can break out the entire dataset into residential and non-residential groups, and then <code>rbind()</code> them back together.</p>
+<pre class="r"><code>boston_res &lt;- boston %&gt;% 
+  filter(SUBDISTRIC == &quot;Residential&quot;) %&gt;% 
+  rowwise() %&gt;% 
+  mutate(category = if(Zone_Desc == &quot;One-Family Residential&quot;){
+    category = &quot;Single Family&quot;
+  } else {
+    category = &quot;Non-single family&quot;
+  }) %&gt;% 
+  st_as_sf()</code></pre>
+<p>Now create the non-residential and bind the two back together.</p>
+<pre class="r"><code>boston_non_res &lt;- boston %&gt;% 
+  filter(SUBDISTRIC != &quot;Residential&quot;, 
+         SUBDISTRIC != &quot;Open Space&quot;, # remove primarily water features
+         DISTRICT != &quot;Boston Harbor&quot;,
+         DISTRICT != &quot;Harborpark: Dorchester Bay/Neponset River Waterfront&quot;) %&gt;% 
+  mutate(category = &quot;Non-residential&quot;)
+
+
+boston_all &lt;- rbind(boston_res, boston_non_res)</code></pre>
+<p>Finally, map!</p>
+<pre class="r"><code>ggplot()  +
+  geom_sf(data = boston_all,
+          mapping = aes(fill = category),
+          color = &quot;#c8c8c8&quot;,
+          size = 0.1, 
+          alpha = 0.5) +
+  scale_fill_manual(values = c(&quot;snow3&quot;, blue, pink),
+                    labels = c(&quot;Non-residential&quot;,
+                               &quot;Non-single family&quot;,
+                               &quot;Single family&quot;)) +
+  labs(title = &quot;Boston&quot;,
+       subtitle = &quot;Residential zoning&quot;,
+       fill = &quot;&quot;,
+       caption = &quot;City of Boston, 2020&quot;) +
+  my_theme()</code></pre>
+<p><img src="../../posts/2020-02-15-housing-density-in-us-cities_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Thats all I’ve got for today. Thanks</p>
+</div>
+
+		</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'eroten-info';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+		Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div><a href="https://github.com/vividvilla/ezhil">Ezhil theme</a> | Built with <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+</body>
+</html>
