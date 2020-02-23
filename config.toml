@@ -3,9 +3,6 @@ languageCode = "en-us"
 title = "Liz Roten"
 theme = "ezhil"
 
-pygmentsstyle = "vs"
-pygmentscodefences = true
-pygmentscodefencesguesssyntax = true
 relativeURLs = true
 
 googleAnalytics = ""
@@ -24,6 +21,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 	disableDisqusTypes = ["page"]
 	featherIconsCDN = true
 	dateFormat = "2006/01/02"
+	mode = "dark"
 
 [[params.social]]
 name = "Twitter"
