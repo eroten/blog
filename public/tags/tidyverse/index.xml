@@ -2,21 +2,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tidyverse on Liz Roten</title>
-    <link>https://lizrotenblog.netlify.com/tags/tidyverse/</link>
+    <link>/tags/tidyverse/</link>
     <description>Recent content in tidyverse on Liz Roten</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Feb 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://lizrotenblog.netlify.com/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Minnesota Lakes</title>
+      <link>/posts/minnesota-lakes/</link>
+      <pubDate>Sun, 23 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/minnesota-lakes/</guid>
+      <description>SourcesDNR Hydrography Dataset
+National Wetland Inventory for Minnesota
+Lake Bathymetric Outlines, Contours, Vegetation, and DEM
+Lake Basin Morphology
+Impaired Waterbodies, Minnesota, 2018
+Stream Routes - Major River Centerlines
+</description>
+    </item>
+    
+    <item>
       <title>Housing Density in US Cities</title>
-      <link>https://lizrotenblog.netlify.com/posts/housing-density-in-us-cities/</link>
+      <link>/posts/housing-density-in-us-cities/</link>
       <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/posts/housing-density-in-us-cities/</guid>
+      <guid>/posts/housing-density-in-us-cities/</guid>
       <description>Since I got back from #rstudioconf, I’ve started to warm up to the idea of sharing my code, even if it isn’t perfect. There may be typos, the blog post may be short, but sharing my work is beneficial for the greater #rstats community, and supports open-source data science.
 So this belated post is inspired by Cities Start to Question an American Ideal: A House With a Yard on Every Lot, in which the NY Times examines residential zoning patterns in different cities.</description>
     </item>

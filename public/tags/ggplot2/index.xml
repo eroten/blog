@@ -2,40 +2,55 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ggplot2 on Liz Roten</title>
-    <link>https://lizrotenblog.netlify.com/tags/ggplot2/</link>
+    <link>/tags/ggplot2/</link>
     <description>Recent content in ggplot2 on Liz Roten</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Feb 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://lizrotenblog.netlify.com/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Minnesota Lakes</title>
+      <link>/posts/minnesota-lakes/</link>
+      <pubDate>Sun, 23 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/minnesota-lakes/</guid>
+      <description>SourcesDNR Hydrography Dataset
+National Wetland Inventory for Minnesota
+Lake Bathymetric Outlines, Contours, Vegetation, and DEM
+Lake Basin Morphology
+Impaired Waterbodies, Minnesota, 2018
+Stream Routes - Major River Centerlines
+</description>
+    </item>
+    
+    <item>
       <title>Housing Density in US Cities</title>
-      <link>https://lizrotenblog.netlify.com/posts/housing-density-in-us-cities/</link>
+      <link>/posts/housing-density-in-us-cities/</link>
       <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/posts/housing-density-in-us-cities/</guid>
+      <guid>/posts/housing-density-in-us-cities/</guid>
       <description>Since I got back from #rstudioconf, I’ve started to warm up to the idea of sharing my code, even if it isn’t perfect. There may be typos, the blog post may be short, but sharing my work is beneficial for the greater #rstats community, and supports open-source data science.
 So this belated post is inspired by Cities Start to Question an American Ideal: A House With a Yard on Every Lot, in which the NY Times examines residential zoning patterns in different cities.</description>
     </item>
     
     <item>
       <title>Fisk&#39;s &#39;Mississippi River Meander&#39; in R</title>
-      <link>https://lizrotenblog.netlify.com/posts/2019-10-27-fisk-s-mississippi-river-meander-in-r/</link>
+      <link>/posts/2019-10-27-fisk-s-mississippi-river-meander-in-r/</link>
       <pubDate>Sun, 27 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/posts/2019-10-27-fisk-s-mississippi-river-meander-in-r/</guid>
+      <guid>/posts/2019-10-27-fisk-s-mississippi-river-meander-in-r/</guid>
       <description>BackgroundPrepData cleaningExplore geological ages and formationsWisconsin glaciationContext and inset mapFinishing upNotesData citationBackgroundThose of us even mildly obsessed with maps will be familiar with Harold Fisk’s 1944 series documenting the historic travel of the Mississippi River in Mississippi River Alluvial Valley. In my house in college, filled with geography majors and map enthusiasts, we had a small print hung on the wall, and it was easy to start reading it, and end up standing there, just staring, for quite a while.</description>
     </item>
     
     <item>
       <title>Visualizing mental health data with ggplot2</title>
-      <link>https://lizrotenblog.netlify.com/posts/2019-08-31-emoods/</link>
+      <link>/posts/2019-08-31-emoods/</link>
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/posts/2019-08-31-emoods/</guid>
+      <guid>/posts/2019-08-31-emoods/</guid>
       <description>Export and download app dataClean and tidyVisualize moods over time with ggplot2Custom stylesOctober 2019 update now with gganimate!Inspiration and creditsThings I love include data visualization, tutorials, and fighting mental illness stigma. This post combines them all! I made a pretty neat layout with plots and a map of my Location History a while back, and here I’ll walk through some of the data cleaning process and custom styling.</description>
     </item>
     

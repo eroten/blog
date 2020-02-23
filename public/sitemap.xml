@@ -3,132 +3,137 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/dt/</loc>
+    <loc>/tags/ggplot2/</loc>
+    <lastmod>2020-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/minnesota-lakes/</loc>
+    <lastmod>2020-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2020-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/sf/</loc>
+    <lastmod>2020-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/tidyverse/</loc>
+    <lastmod>2020-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/dt/</loc>
     <lastmod>2020-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/ggplot2/</loc>
+    <loc>/posts/housing-density-in-us-cities/</loc>
     <lastmod>2020-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/posts/housing-density-in-us-cities/</loc>
+    <loc>/tags/lwgeom/</loc>
     <lastmod>2020-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/</loc>
+    <loc>/tags/maps/</loc>
     <lastmod>2020-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/lwgeom/</loc>
+    <loc>/tags/r-markdown/</loc>
     <lastmod>2020-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/maps/</loc>
+    <loc>/tags/rgdal/</loc>
     <lastmod>2020-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/posts/</loc>
+    <loc>/tags/spatial/</loc>
     <lastmod>2020-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/r-markdown/</loc>
+    <loc>/tags/tutorial/</loc>
     <lastmod>2020-02-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/rgdal/</loc>
-    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lizrotenblog.netlify.com/tags/sf/</loc>
-    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lizrotenblog.netlify.com/tags/spatial/</loc>
-    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lizrotenblog.netlify.com/tags/</loc>
-    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lizrotenblog.netlify.com/tags/tidyverse/</loc>
-    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lizrotenblog.netlify.com/tags/tutorial/</loc>
-    <lastmod>2020-02-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lizrotenblog.netlify.com/posts/2019-10-27-fisk-s-mississippi-river-meander-in-r/</loc>
+    <loc>/posts/2019-10-27-fisk-s-mississippi-river-meander-in-r/</loc>
     <lastmod>2019-10-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/ggmap/</loc>
+    <loc>/tags/ggmap/</loc>
     <lastmod>2019-10-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/gimp/</loc>
+    <loc>/tags/gimp/</loc>
     <lastmod>2019-10-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/gis/</loc>
+    <loc>/tags/gis/</loc>
     <lastmod>2019-10-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/inkscape/</loc>
+    <loc>/tags/inkscape/</loc>
     <lastmod>2019-10-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/mississppi-river/</loc>
+    <loc>/tags/mississppi-river/</loc>
     <lastmod>2019-10-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/tidycensus/</loc>
+    <loc>/tags/tidycensus/</loc>
     <lastmod>2019-10-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/emoods/</loc>
+    <loc>/tags/emoods/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/gganimate/</loc>
+    <loc>/tags/gganimate/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/mental-health/</loc>
+    <loc>/tags/mental-health/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/tags/quantitative-self/</loc>
+    <loc>/tags/quantitative-self/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://lizrotenblog.netlify.com/posts/2019-08-31-emoods/</loc>
+    <loc>/posts/2019-08-31-emoods/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
   </url>
   

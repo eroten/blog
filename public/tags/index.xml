@@ -2,192 +2,192 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Liz Roten</title>
-    <link>https://lizrotenblog.netlify.com/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on Liz Roten</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Feb 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://lizrotenblog.netlify.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>DT</title>
-      <link>https://lizrotenblog.netlify.com/tags/dt/</link>
-      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://lizrotenblog.netlify.com/tags/dt/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>ggplot2</title>
-      <link>https://lizrotenblog.netlify.com/tags/ggplot2/</link>
-      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
+      <link>/tags/ggplot2/</link>
+      <pubDate>Sun, 23 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/ggplot2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lwgeom</title>
-      <link>https://lizrotenblog.netlify.com/tags/lwgeom/</link>
-      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://lizrotenblog.netlify.com/tags/lwgeom/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>maps</title>
-      <link>https://lizrotenblog.netlify.com/tags/maps/</link>
-      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://lizrotenblog.netlify.com/tags/maps/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>R Markdown</title>
-      <link>https://lizrotenblog.netlify.com/tags/r-markdown/</link>
-      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://lizrotenblog.netlify.com/tags/r-markdown/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>rgdal</title>
-      <link>https://lizrotenblog.netlify.com/tags/rgdal/</link>
-      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://lizrotenblog.netlify.com/tags/rgdal/</guid>
+      <guid>/tags/ggplot2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>sf</title>
-      <link>https://lizrotenblog.netlify.com/tags/sf/</link>
-      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
+      <link>/tags/sf/</link>
+      <pubDate>Sun, 23 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/sf/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>spatial</title>
-      <link>https://lizrotenblog.netlify.com/tags/spatial/</link>
-      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://lizrotenblog.netlify.com/tags/spatial/</guid>
+      <guid>/tags/sf/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tidyverse</title>
-      <link>https://lizrotenblog.netlify.com/tags/tidyverse/</link>
+      <link>/tags/tidyverse/</link>
+      <pubDate>Sun, 23 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DT</title>
+      <link>/tags/dt/</link>
       <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/tidyverse/</guid>
+      <guid>/tags/dt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lwgeom</title>
+      <link>/tags/lwgeom/</link>
+      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/lwgeom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>maps</title>
+      <link>/tags/maps/</link>
+      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/maps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R Markdown</title>
+      <link>/tags/r-markdown/</link>
+      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r-markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rgdal</title>
+      <link>/tags/rgdal/</link>
+      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rgdal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spatial</title>
+      <link>/tags/spatial/</link>
+      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/spatial/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tutorial</title>
-      <link>https://lizrotenblog.netlify.com/tags/tutorial/</link>
+      <link>/tags/tutorial/</link>
       <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/tutorial/</guid>
+      <guid>/tags/tutorial/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ggmap</title>
-      <link>https://lizrotenblog.netlify.com/tags/ggmap/</link>
+      <link>/tags/ggmap/</link>
       <pubDate>Sun, 27 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/ggmap/</guid>
+      <guid>/tags/ggmap/</guid>
       <description></description>
     </item>
     
     <item>
       <title>gimp</title>
-      <link>https://lizrotenblog.netlify.com/tags/gimp/</link>
+      <link>/tags/gimp/</link>
       <pubDate>Sun, 27 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/gimp/</guid>
+      <guid>/tags/gimp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>gis</title>
-      <link>https://lizrotenblog.netlify.com/tags/gis/</link>
+      <link>/tags/gis/</link>
       <pubDate>Sun, 27 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/gis/</guid>
+      <guid>/tags/gis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>inkscape</title>
-      <link>https://lizrotenblog.netlify.com/tags/inkscape/</link>
+      <link>/tags/inkscape/</link>
       <pubDate>Sun, 27 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/inkscape/</guid>
+      <guid>/tags/inkscape/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mississppi river</title>
-      <link>https://lizrotenblog.netlify.com/tags/mississppi-river/</link>
+      <link>/tags/mississppi-river/</link>
       <pubDate>Sun, 27 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/mississppi-river/</guid>
+      <guid>/tags/mississppi-river/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tidycensus</title>
-      <link>https://lizrotenblog.netlify.com/tags/tidycensus/</link>
+      <link>/tags/tidycensus/</link>
       <pubDate>Sun, 27 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/tidycensus/</guid>
+      <guid>/tags/tidycensus/</guid>
       <description></description>
     </item>
     
     <item>
       <title>eMoods</title>
-      <link>https://lizrotenblog.netlify.com/tags/emoods/</link>
+      <link>/tags/emoods/</link>
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/emoods/</guid>
+      <guid>/tags/emoods/</guid>
       <description></description>
     </item>
     
     <item>
       <title>gganimate</title>
-      <link>https://lizrotenblog.netlify.com/tags/gganimate/</link>
+      <link>/tags/gganimate/</link>
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/gganimate/</guid>
+      <guid>/tags/gganimate/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mental health</title>
-      <link>https://lizrotenblog.netlify.com/tags/mental-health/</link>
+      <link>/tags/mental-health/</link>
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/mental-health/</guid>
+      <guid>/tags/mental-health/</guid>
       <description></description>
     </item>
     
     <item>
       <title>quantitative self</title>
-      <link>https://lizrotenblog.netlify.com/tags/quantitative-self/</link>
+      <link>/tags/quantitative-self/</link>
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/tags/quantitative-self/</guid>
+      <guid>/tags/quantitative-self/</guid>
       <description></description>
     </item>
     
