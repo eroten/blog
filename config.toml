@@ -25,6 +25,16 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 	featherIconsCDN = true
 	dateFormat = "2006/01/02"
 
+[[params.social]]
+name = "Twitter"
+icon = "twitter"
+url = "https://twitter.com/lizroten"
+
+[[params.social]]
+name = "Github"
+icon = "github"
+url = "https://github.com/eroten"
+
 [[menu.main]]
 name = "Home"
 url = "/"
