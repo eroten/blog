@@ -1,0 +1,25 @@
+---
+title: Minnesota Lakes
+author: Liz Roten
+date: '2020-02-23'
+slug: minnesota-lakes
+categories:
+  - cartography
+  - map
+  - blog
+tags:
+  - tidyverse
+  - sf
+  - ggplot2
+draft: yes
+---
+
+
+## Sources  
+
+[DNR Hydrography Dataset](https://gisdata.mn.gov/dataset/water-dnr-hydrography)  
+[National Wetland Inventory for Minnesota](https://gisdata.mn.gov/dataset/water-nat-wetlands-inv-2009-2014)  
+[Lake Bathymetric Outlines, Contours, Vegetation, and DEM](https://gisdata.mn.gov/dataset/water-lake-bathymetry)  
+[Lake Basin Morphology](https://gisdata.mn.gov/dataset/water-lake-basin-morphology)  
+[Impaired Waterbodies, Minnesota, 2018](https://gisdata.mn.gov/dataset/env-impaired-water-2018)  
+[Stream Routes - Major River Centerlines](https://gisdata.mn.gov/dataset/water-major-river-centerlines)  
