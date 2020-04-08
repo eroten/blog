@@ -1,0 +1,164 @@
+---
+title: Finding the perfect sock pattern with ravelRy
+author: Liz Roten
+date: '2020-04-07'
+description: Using Ravelry's API to find just the right sock pattern
+slug: finding-the-perfect-sock-pattern-with-ravelry
+categories:
+  - blog
+tags:
+  - ravelry
+  - tidyverse
+draft: yes
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  comment = "#>"
+)
+```
+
+<base target="_blank"/>
+
+I am a knitter. Knitting is a calming, fufilling practice that keep my hands busy and require *just* enough brain power to keep my mind from wandering too far. Over the past winter, I conquered my fear of making socks, and now I profess that I am a sock knitter. I made socks for Christmas gifts, and churned out four pairs during my evenings, bus commutes, long work meetings, lectures, coffee and tea shop visits (basically everywhere). I'm comfortable with the standard stockinette sock, and I even ventured out into other patterns from Ravelry (_the_ social medium for yarn folks), like [Hermione's Everyday Socks](https://www.ravelry.com/patterns/library/hermiones-everyday-socks) and the [Slip It Simple Socks](https://www.ravelry.com/patterns/library/slip-it-simple-sock).  
+
+But, even as the weather is warming here in Minnesota, working from home means that I don't have a commute and COVID-19 means that I have plenty of spare angst, so I've decided to make a new pair of socks, and work with a new pattern. 
+
+And, just when I was starting to glaze over scrolling through endless Ravelry pages and reviews, I found [ravelRy](https://github.com/walkerkq/ravelRy), an R package that interfaces seamlessly with Ravelry's [API](https://www.ravelry.com/api). And its even on CRAN!  
+
+Lets install, and get going!  
+```{r, eval = FALSE}
+install.packages("ravelRy")
+```
+
+```{r, message = FALSE}
+library(ravelRy)
+library(tidyverse)
+```
+
+
+## Authentication    
+
+As with most APIs, you need to authenticate somehow. I'll use my Ravelry account credentials (you'll need a [free, pro account](https://www.ravelry.com/pro/developer) to access the API).  
+
+```{r, eval = FALSE}
+ravelRy::ravelry_auth(key = "username", overwrite = T)
+ravelRy::ravelry_auth(key = "password")
+```
+
+```{r, include=FALSE}
+Sys.setenv("RAVELRY_USERNAME" = paste(keyring::key_get("RAVELRY_USERNAME")))
+Sys.setenv("RAVELRY_PASSWORD" = paste(keyring::key_get("RAVELRY_PASSWORD")))
+```
+
+## Search for a sock pattern!  
+
+Lets start simple, and just look for the first 20 results for "sock" that are available as a Ravelry download.  
+
+```{r}
+search_result <- search_patterns(query = "sock",
+                                 page_size = 20,
+                                 craft = "knitting", # knitting or crochet
+                                 fit = "adult", # adult, baby, etc.
+                                 ravelry_download = TRUE) 
+
+head(search_result)
+```
+
+The fourth result is even my old friend, "Hermione's Everyday Socks!"
+
+```{r}
+search_result[4,] # get the fourth row in the table
+```
+
+Lets take a look at the actual pattern from the search results using `get_patterns()`.  
+
+```{r}
+hermione <- get_patterns(ids = search_result[4,]$id)
+str(hermione, max.level = 2)
+```
+
+I thought the Hermione sock was fairly straightforward. What is the average difficulty, on a scale of 1 to 10?  
+
+```{r}
+hermione$difficulty_count # how many reviews rated a difficulty?
+hermione$difficulty_average # what is the average difficulty?
+```
+
+Lets find my other sock pattern, Slip It Simple, and see what the difficulty rating is.
+
+```{r}
+slip_it_search <- search_patterns(query = "slip it simple sock")
+```
+
+Next, take the `id` column and feed it into  `get_patterns()`.  
+
+```{r}
+slip_it <- get_patterns(ids = slip_it_search$id)
+```
+
+What is our difficulty?  
+
+```{r}
+slip_it$difficulty_count
+slip_it$difficulty_average
+```
+There are fewer reviews, but the difficulty is super low.  
+
+## Refining our search  
+
+We can use the pattern table for `hermione` and `slip_it` to narrow our search further.   
+
+```{r}
+head(search_patterns(query = "sock",
+                     page_size = 20,
+                     craft = "knitting", # knitting or crochet
+                     fit = "adult", # adult, baby, etc.
+                     ravelry_download = TRUE,
+                     pattern_needle_sizes = 1,
+                     weight = "fingering", # yarn weight
+                     type = "sock",
+                     colors = 1)
+     )
+```
+
+Another trick is to go look at the URL when I am searching on Ravelry itself.  
+
+![A screenshot of the Ravelry URL when I filter my search for knitting, and sort for recently popular.](/posts/2020-04-07-finding-the-perfect-sock-pattern-with-ravelry_files/ravelry_url.PNG)  
+
+This gives me an idea of what search terms I can add to `search_patterns()`.  
+
+```{r}
+refined <- search_patterns(query = "socks",
+                pc = "mid-calf",
+                page_size = 30,
+                craft = "knitting", # knitting or crochet
+                # fit = "adult", # adult, baby, etc.
+                ravelry_download = TRUE,
+                pattern_needle_sizes = 1,
+                weight = "fingering", # yarn weight
+                type = "sock",
+                colors = 1,
+                diff = "3.5%7C8",
+                language = "en",
+                sort = "projects",
+                photo = "yes")
+```
+
+## Review refined search results  
+
+Now that I've picked out 200 patterns to consider/make fun plots with, lets review them in more detail.  
+
+```{r}
+refined_patterns <- get_patterns(ids = refined$id) # this might take a while
+```
+
+
+```{r}
+ggplot() +
+  geom_histogram(refined_patterns,
+                 mapping = aes(x = comments_count))
+```
+
