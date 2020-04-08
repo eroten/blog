@@ -255,7 +255,8 @@ pitt_water &lt;- read_sf(&quot;http://openac-alcogis.opendata.arcgis.com/dataset
 ##  [9] &quot;zoning_id&quot;     &quot;geometry&quot;</code></pre>
 <p>Next, we can look at “zoning_ztype.”</p>
 <pre class="r"><code>head(unique(austin$zoning_ztype))</code></pre>
-<pre><code>## [1] &quot;RR-NP&quot;    &quot;SF-6&quot;     &quot;SF-1&quot;     &quot;CS-MU-NP&quot; &quot;MF-2&quot;     &quot;SF-2&quot;</code></pre>
+<pre><code>## [1] &quot;SF-3-NP&quot;      &quot;SF-3-H-CO-NP&quot; &quot;GO-MU-H-NP&quot;   &quot;LA&quot;           &quot;DMU&quot;         
+## [6] &quot;I-SF-4A&quot;</code></pre>
 <p>YIKES. Looks like we need a data dictionary.</p>
 <p>I would love to say that I elegantly extracted the zoning codes from the <a href="http://www.austintexas.gov/page/zoning-districts">city’s website</a>, but I ended up copying the HTML table to Excel and manipulating the columns from there. The text-to-columns tool is very useful fo instances like this. I also added codes “SF-4” and “MF”, which weren’t explicitly provided.</p>
 <pre class="r"><code>austin_desc &lt;- read.csv(&quot;data/zoning_descriptions.csv&quot;) %&gt;% 

@@ -337,16 +337,16 @@ my_theme &lt;- function(...) {
     date_labels = &quot;%b&quot;,
     date_minor_breaks = &quot;1 month&quot;
   ) +
-  scale_y_discrete(labels = NULL) +
   labs(
     x = &quot;&quot;,
     y = &quot;&quot;,
     title = &quot;Depression, 2018&quot;,
     fill = &quot;&quot;,
     caption = &quot;Liz Roten&quot;
-  ) +
+  ) + 
   coord_polar() +
-  my_theme()</code></pre>
+  my_theme() +
+  theme(axis.text.y = element_blank())</code></pre>
 <p><img src="../../posts/2019-08-31-emoods_files/figure-html/unnamed-chunk-12-1.png" width="2100" /></p>
 <pre class="r"><code>ggplot(data = plot_data_2018) +
   geom_col(
@@ -366,7 +366,6 @@ my_theme &lt;- function(...) {
     labels = NULL,
     date_minor_breaks = &quot;1 month&quot;
   ) +
-  scale_y_discrete(labels = NULL) +
   scale_fill_manual(
     values = my_colors,
     aesthetics = c(&quot;fill&quot;),
@@ -385,7 +384,8 @@ my_theme &lt;- function(...) {
     caption = &quot;Liz Roten&quot;
   ) +
   coord_polar() +
-  my_theme()</code></pre>
+  my_theme() +
+  theme(axis.text.y = element_blank())</code></pre>
 <p><img src="../../posts/2019-08-31-emoods_files/figure-html/unnamed-chunk-14-1.png" width="2100" /></p>
 <p>There is much more I want to do with this data, like examining different seasons, how sleep and therpay influence depression and anxiety, and how medication adjustments played out.</p>
 </div>

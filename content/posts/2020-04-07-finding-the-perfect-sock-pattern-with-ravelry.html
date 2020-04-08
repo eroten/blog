@@ -1,0 +1,178 @@
+---
+title: Finding the perfect sock pattern with ravelRy
+author: Liz Roten
+date: '2020-04-07'
+description: Using Ravelry's API to find just the right sock pattern
+slug: finding-the-perfect-sock-pattern-with-ravelry
+categories:
+  - blog
+tags:
+  - ravelry
+  - tidyverse
+draft: yes
+---
+
+
+
+<p><base target="_blank"/></p>
+<p>I am a knitter. Knitting is a calming, fufilling practice that keep my hands busy and require <em>just</em> enough brain power to keep my mind from wandering too far. Over the past winter, I conquered my fear of making socks, and now I profess that I am a sock knitter. I made socks for Christmas gifts, and churned out four pairs during my evenings, bus commutes, long work meetings, lectures, coffee and tea shop visits (basically everywhere). I’m comfortable with the standard stockinette sock, and I even ventured out into other patterns from Ravelry (<em>the</em> social medium for yarn folks), like <a href="https://www.ravelry.com/patterns/library/hermiones-everyday-socks">Hermione’s Everyday Socks</a> and the <a href="https://www.ravelry.com/patterns/library/slip-it-simple-sock">Slip It Simple Socks</a>.</p>
+<p>But, even as the weather is warming here in Minnesota, working from home means that I don’t have a commute and COVID-19 means that I have plenty of spare angst, so I’ve decided to make a new pair of socks, and work with a new pattern.</p>
+<p>And, just when I was starting to glaze over scrolling through endless Ravelry pages and reviews, I found <a href="https://github.com/walkerkq/ravelRy">ravelRy</a>, an R package that interfaces seamlessly with Ravelry’s <a href="https://www.ravelry.com/api">API</a>. And its even on CRAN!</p>
+<p>Lets install, and get going!</p>
+<pre class="r"><code>install.packages(&quot;ravelRy&quot;)</code></pre>
+<pre class="r"><code>library(ravelRy)
+library(tidyverse)</code></pre>
+<div id="authentication" class="section level2">
+<h2>Authentication</h2>
+<p>As with most APIs, you need to authenticate somehow. I’ll use my Ravelry account credentials (you’ll need a <a href="https://www.ravelry.com/pro/developer">free, pro account</a> to access the API).</p>
+<pre class="r"><code>ravelRy::ravelry_auth(key = &quot;username&quot;, overwrite = T)
+ravelRy::ravelry_auth(key = &quot;password&quot;)</code></pre>
+</div>
+<div id="search-for-a-sock-pattern" class="section level2">
+<h2>Search for a sock pattern!</h2>
+<p>Lets start simple, and just look for the first 20 results for “sock” that are available as a Ravelry download.</p>
+<pre class="r"><code>search_result &lt;- search_patterns(query = &quot;sock&quot;,
+                                 page_size = 20,
+                                 craft = &quot;knitting&quot;, # knitting or crochet
+                                 fit = &quot;adult&quot;, # adult, baby, etc.
+                                 ravelry_download = TRUE) 
+
+head(search_result)
+#&gt; # A tibble: 6 x 7
+#&gt;   free       id name      permalink   designer.id designer.name  pattern_sources
+#&gt;   &lt;lgl&gt;   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;          &lt;list&gt;         
+#&gt; 1 FALSE 1014660 Diamond ~ diamond-du~      100153 Liz Harris     &lt;df[,59] [2 x ~
+#&gt; 2 FALSE 1009293 Wohin?    wohin             17216 Caoua Coffee   &lt;df[,59] [2 x ~
+#&gt; 3 FALSE 1020039 Braidalot braidalot         97793 Dots Dabbles   &lt;df[,59] [1 x ~
+#&gt; 4 TRUE   130787 Hermione~ hermiones-~       14789 Erica Lueder   &lt;df[,59] [2 x ~
+#&gt; 5 TRUE   580119 Rose Cit~ rose-city-~       82613 Mara Catherin~ &lt;df[,59] [1 x ~
+#&gt; 6 TRUE   891114 Rye Light rye-light         45502 tincanknits    &lt;df[,59] [3 x ~</code></pre>
+<p>The fourth result is even my old friend, “Hermione’s Everyday Socks!”</p>
+<pre class="r"><code>search_result[4,] # get the fourth row in the table
+#&gt; # A tibble: 1 x 7
+#&gt;   free      id name       permalink    designer.id designer.name pattern_sources
+#&gt;   &lt;lgl&gt;  &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;         &lt;list&gt;         
+#&gt; 1 TRUE  130787 Hermione&#39;~ hermiones-e~       14789 Erica Lueder  &lt;df[,59] [2 x ~</code></pre>
+<p>Lets take a look at the actual pattern from the search results using <code>get_patterns()</code>.</p>
+<pre class="r"><code>hermione &lt;- get_patterns(ids = search_result[4,]$id)
+str(hermione, max.level = 2)
+#&gt; tibble [1 x 50] (S3: tbl_df/tbl/data.frame)
+#&gt;  $ comments_count         : int 150
+#&gt;  $ created_at             : chr &quot;2009/07/09 11:36:45 -0400&quot;
+#&gt;  $ currency               : chr &quot;&quot;
+#&gt;  $ difficulty_average     : num 2.34
+#&gt;  $ difficulty_count       : int 7406
+#&gt;  $ downloadable           : logi TRUE
+#&gt;  $ favorites_count        : int 56140
+#&gt;  $ free                   : logi TRUE
+#&gt;  $ gauge                  : num 36
+#&gt;  $ gauge_divisor          : int 4
+#&gt;  $ gauge_pattern          : chr &quot;stockinette stitch  &quot;
+#&gt;  $ generally_available    : chr &quot;2009/07/01 00:00:00 -0400&quot;
+#&gt;  $ id                     : int 130787
+#&gt;  $ name                   : chr &quot;Hermione&#39;s Everyday Socks&quot;
+#&gt;  $ pdf_url                : chr &quot;&quot;
+#&gt;  $ permalink              : chr &quot;hermiones-everyday-socks&quot;
+#&gt;  $ price                  : chr &quot;&quot;
+#&gt;  $ projects_count         : int 30199
+#&gt;  $ published              : chr &quot;2009/07/01&quot;
+#&gt;  $ queued_projects_count  : int 11923
+#&gt;  $ rating_average         : num 4.63
+#&gt;  $ rating_count           : int 7458
+#&gt;  $ row_gauge              : chr &quot;&quot;
+#&gt;  $ updated_at             : chr &quot;2017/01/03 08:29:11 -0500&quot;
+#&gt;  $ url                    : chr &quot;http://dreamsinfiber.blogspot.com/2009/07/hermoines-everyday-socks-free-pattern.html#links&quot;
+#&gt;  $ yardage                : int 350
+#&gt;  $ yardage_max            : int 400
+#&gt;  $ personal_attributes    : chr &quot;&quot;
+#&gt;  $ sizes_available        : chr &quot;Women&#39;s med&quot;
+#&gt;  $ product_id             : int 29899
+#&gt;  $ currency_symbol        : chr &quot;&quot;
+#&gt;  $ ravelry_download       : logi TRUE
+#&gt;  $ download_location      :List of 1
+#&gt;  $ pdf_in_library         : logi FALSE
+#&gt;  $ volumes_in_library     : chr &quot;&quot;
+#&gt;  $ gauge_description      : chr &quot;36 stitches  = 4 inches in stockinette stitch  &quot;
+#&gt;  $ yarn_weight_description: chr &quot;Fingering (14 wpi)&quot;
+#&gt;  $ yardage_description    : chr &quot;350 - 400 yards&quot;
+#&gt;  $ pattern_needle_sizes   :List of 1
+#&gt;  $ notes_html             : chr &quot;\n&lt;p&gt;Hermione, as described in J.K. Rowling’s Harry Potter Series, is a rather smart and practical heroine. Whi&quot;| __truncated__
+#&gt;  $ notes                  : chr &quot;Hermione, as described in J.K. Rowling’s Harry Potter Series, is a rather smart and practical heroine.   While &quot;| __truncated__
+#&gt;  $ packs                  :List of 1
+#&gt;  $ printings              :List of 1
+#&gt;  $ yarn_weight            :List of 1
+#&gt;  $ craft                  :List of 1
+#&gt;  $ pattern_categories     :List of 1
+#&gt;  $ pattern_attributes     :List of 1
+#&gt;  $ pattern_author         :List of 1
+#&gt;  $ photos                 :List of 1
+#&gt;  $ pattern_type           :List of 1</code></pre>
+<p>I thought the Hermione sock was fairly straightforward. What is the average difficulty, on a scale of 1 to 10?</p>
+<pre class="r"><code>hermione$difficulty_count # how many reviews rated a difficulty?
+#&gt; [1] 7406
+hermione$difficulty_average # what is the average difficulty?
+#&gt; [1] 2.34202</code></pre>
+<p>Lets find my other sock pattern, Slip It Simple, and see what the difficulty rating is.</p>
+<pre class="r"><code>slip_it_search &lt;- search_patterns(query = &quot;slip it simple sock&quot;)</code></pre>
+<p>Next, take the <code>id</code> column and feed it into <code>get_patterns()</code>.</p>
+<pre class="r"><code>slip_it &lt;- get_patterns(ids = slip_it_search$id)</code></pre>
+<p>What is our difficulty?</p>
+<pre class="r"><code>slip_it$difficulty_count
+#&gt; [1] 39
+slip_it$difficulty_average
+#&gt; [1] 1.974359</code></pre>
+<p>There are fewer reviews, but the difficulty is super low.</p>
+</div>
+<div id="refining-our-search" class="section level2">
+<h2>Refining our search</h2>
+<p>We can use the pattern table for <code>hermione</code> and <code>slip_it</code> to narrow our search further.</p>
+<pre class="r"><code>head(search_patterns(query = &quot;sock&quot;,
+                     page_size = 20,
+                     craft = &quot;knitting&quot;, # knitting or crochet
+                     fit = &quot;adult&quot;, # adult, baby, etc.
+                     ravelry_download = TRUE,
+                     pattern_needle_sizes = 1,
+                     weight = &quot;fingering&quot;, # yarn weight
+                     type = &quot;sock&quot;,
+                     colors = 1)
+     )
+#&gt; # A tibble: 6 x 7
+#&gt;   free       id name      permalink   designer.id designer.name  pattern_sources
+#&gt;   &lt;lgl&gt;   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;          &lt;list&gt;         
+#&gt; 1 TRUE   130787 Hermione~ hermiones-~       14789 Erica Lueder   &lt;df[,59] [2 x ~
+#&gt; 2 TRUE   580119 Rose Cit~ rose-city-~       82613 Mara Catherin~ &lt;df[,59] [1 x ~
+#&gt; 3 TRUE   891114 Rye Light rye-light         45502 tincanknits    &lt;df[,59] [3 x ~
+#&gt; 4 FALSE  720294 Mina&#39;s V~ minas-vani~       81846 Knitting Expa~ &lt;df[,59] [2 x ~
+#&gt; 5 TRUE   315418 Vanilla ~ vanilla-la~       53376 Virginia Rose~ &lt;df[,59] [1 x ~
+#&gt; 6 FALSE 1004424 Luminary~ luminary-s~       32124 Helen Stewart  &lt;df[,59] [2 x ~</code></pre>
+<p>Another trick is to go look at the URL when I am searching on Ravelry itself.</p>
+<div class="figure">
+<img src="/posts/2020-04-07-finding-the-perfect-sock-pattern-with-ravelry_files/ravelry_url.PNG" alt="" />
+<p class="caption">A screenshot of the Ravelry URL when I filter my search for knitting, and sort for recently popular.</p>
+</div>
+<p>This gives me an idea of what search terms I can add to <code>search_patterns()</code>.</p>
+<pre class="r"><code>refined &lt;- search_patterns(query = &quot;socks&quot;,
+                pc = &quot;mid-calf&quot;,
+                page_size = 30,
+                craft = &quot;knitting&quot;, # knitting or crochet
+                # fit = &quot;adult&quot;, # adult, baby, etc.
+                ravelry_download = TRUE,
+                pattern_needle_sizes = 1,
+                weight = &quot;fingering&quot;, # yarn weight
+                type = &quot;sock&quot;,
+                colors = 1,
+                diff = &quot;3.5%7C8&quot;,
+                language = &quot;en&quot;,
+                sort = &quot;projects&quot;,
+                photo = &quot;yes&quot;)</code></pre>
+</div>
+<div id="review-refined-search-results" class="section level2">
+<h2>Review refined search results</h2>
+<p>Now that I’ve picked out 200 patterns to consider/make fun plots with, lets review them in more detail.</p>
+<pre class="r"><code>refined_patterns &lt;- get_patterns(ids = refined$id) # this might take a while</code></pre>
+<pre class="r"><code>ggplot() +
+  geom_histogram(refined_patterns,
+                 mapping = aes(x = comments_count))
+#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="/posts/2020-04-07-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
