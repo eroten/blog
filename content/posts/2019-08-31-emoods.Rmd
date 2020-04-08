@@ -285,16 +285,16 @@ ggplot(data = filter(
     date_labels = "%b",
     date_minor_breaks = "1 month"
   ) +
-  scale_y_discrete(labels = NULL) +
   labs(
     x = "",
     y = "",
     title = "Depression, 2018",
     fill = "",
     caption = "Liz Roten"
-  ) +
+  ) + 
   coord_polar() +
-  my_theme()
+  my_theme() +
+  theme(axis.text.y = element_blank())
 
 ```
 
@@ -321,7 +321,6 @@ ggplot(data = plot_data_2018) +
     labels = NULL,
     date_minor_breaks = "1 month"
   ) +
-  scale_y_discrete(labels = NULL) +
   scale_fill_manual(
     values = my_colors,
     aesthetics = c("fill"),
@@ -340,7 +339,9 @@ ggplot(data = plot_data_2018) +
     caption = "Liz Roten"
   ) +
   coord_polar() +
-  my_theme()
+  my_theme() +
+  theme(axis.text.y = element_blank())
+
 ```
 
 ```{r, eval = FALSE, include = FALSE}
