@@ -1,7 +1,7 @@
 ---
 title: Finding the perfect sock pattern with ravelRy
 author: Liz Roten
-date: '2020-04-07'
+date: '2020-04-08'
 description: Using Ravelry's API to find just the right sock pattern
 slug: finding-the-perfect-sock-pattern-with-ravelry
 categories:
@@ -9,26 +9,56 @@ categories:
 tags:
   - ravelry
   - tidyverse
-draft: yes
+  - ggplot2
+  - purrr
+  - cowplot
+  - imager
+  - dutchmasters
+  - knitr
 ---
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   warning = FALSE,
-  comment = "#>"
+  comment = "#>",
+  dev = "CairoPNG",
+  dpi = 300
 )
+
+# from https://community.rstudio.com/t/showing-only-the-first-few-lines-of-the-results-of-a-code-chunk/6963/2
+library(knitr)
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+  lines <- options$output.lines
+  if (is.null(lines)) {
+    return(hook_output(x, options))  # pass to default hook
+  }
+  x <- unlist(strsplit(x, "\n"))
+  more <- "..."
+  if (length(lines)==1) {        # first n lines
+    if (length(x) > lines) {
+      # truncate the output, but add ....
+      x <- c(head(x, lines), more)
+    }
+  } else {
+    x <- c(more, x[lines], more)
+  }
+  # paste these lines together
+  x <- paste(c(x, ""), collapse = "\n")
+  hook_output(x, options)
+})
 ```
 
-<base target="_blank"/>
 
-I am a knitter. Knitting is a calming, fufilling practice that keep my hands busy and require *just* enough brain power to keep my mind from wandering too far. Over the past winter, I conquered my fear of making socks, and now I profess that I am a sock knitter. I made socks for Christmas gifts, and churned out four pairs during my evenings, bus commutes, long work meetings, lectures, coffee and tea shop visits (basically everywhere). I'm comfortable with the standard stockinette sock, and I even ventured out into other patterns from Ravelry (_the_ social medium for yarn folks), like [Hermione's Everyday Socks](https://www.ravelry.com/patterns/library/hermiones-everyday-socks) and the [Slip It Simple Socks](https://www.ravelry.com/patterns/library/slip-it-simple-sock).  
+I am a knitter. Knitting is a calming, fulfilling practice that keep my hands busy and require *just* enough brain power to keep my mind from wandering too far. Over the past winter, I conquered my fear of making socks, and now I profess that I am a sock knitter. I made socks for Christmas gifts, and churned out four pairs during my evenings, bus commutes, long work meetings, lectures, coffee and tea shop visits (basically everywhere). I'm comfortable with the standard stockinette sock, and I even ventured out into other patterns from Ravelry (_the_ social medium for yarn folks), like [Hermione's Everyday Socks](https://www.ravelry.com/patterns/library/hermiones-everyday-socks) and the [Slip It Simple Socks](https://www.ravelry.com/patterns/library/slip-it-simple-sock).  
 
 But, even as the weather is warming here in Minnesota, working from home means that I don't have a commute and COVID-19 means that I have plenty of spare angst, so I've decided to make a new pair of socks, and work with a new pattern. 
 
 And, just when I was starting to glaze over scrolling through endless Ravelry pages and reviews, I found [ravelRy](https://github.com/walkerkq/ravelRy), an R package that interfaces seamlessly with Ravelry's [API](https://www.ravelry.com/api). And its even on CRAN!  
 
 Lets install, and get going!  
+
 ```{r, eval = FALSE}
 install.packages("ravelRy")
 ```
