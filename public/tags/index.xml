@@ -6,10 +6,82 @@
     <description>Recent content in Tags on Liz Roten</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://lizrotenblog.netlify.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>cowplot</title>
+      <link>https://lizrotenblog.netlify.com/tags/cowplot/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/cowplot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dutchmasters</title>
+      <link>https://lizrotenblog.netlify.com/tags/dutchmasters/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/dutchmasters/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggplot2</title>
+      <link>https://lizrotenblog.netlify.com/tags/ggplot2/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>imager</title>
+      <link>https://lizrotenblog.netlify.com/tags/imager/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/imager/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>knitr</title>
+      <link>https://lizrotenblog.netlify.com/tags/knitr/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/knitr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>purrr</title>
+      <link>https://lizrotenblog.netlify.com/tags/purrr/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/purrr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ravelry</title>
+      <link>https://lizrotenblog.netlify.com/tags/ravelry/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/ravelry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidyverse</title>
+      <link>https://lizrotenblog.netlify.com/tags/tidyverse/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://lizrotenblog.netlify.com/tags/tidyverse/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>DT</title>
@@ -17,15 +89,6 @@
       <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://lizrotenblog.netlify.com/tags/dt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ggplot2</title>
-      <link>https://lizrotenblog.netlify.com/tags/ggplot2/</link>
-      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://lizrotenblog.netlify.com/tags/ggplot2/</guid>
       <description></description>
     </item>
     
@@ -80,15 +143,6 @@
       <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://lizrotenblog.netlify.com/tags/spatial/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tidyverse</title>
-      <link>https://lizrotenblog.netlify.com/tags/tidyverse/</link>
-      <pubDate>Sat, 15 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://lizrotenblog.netlify.com/tags/tidyverse/</guid>
       <description></description>
     </item>
     

@@ -272,6 +272,8 @@ attributes_long %>%
 I want to use a pattern with high ratings and a high number of projects. What do these distributions look like?  
 
 ```{r}
+library(cowplot)
+
 project_count <- ggplot(data = refined_patterns) +
   geom_density(
     mapping = aes(x = projects_count),
