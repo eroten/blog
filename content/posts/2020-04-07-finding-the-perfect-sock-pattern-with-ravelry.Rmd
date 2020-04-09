@@ -32,11 +32,11 @@ hook_output <- knit_hooks$get("output")
 knit_hooks$set(output = function(x, options) {
   lines <- options$output.lines
   if (is.null(lines)) {
-    return(hook_output(x, options))  # pass to default hook
+    return(hook_output(x, options)) # pass to default hook
   }
   x <- unlist(strsplit(x, "\n"))
   more <- "..."
-  if (length(lines)==1) {        # first n lines
+  if (length(lines) == 1) { # first n lines
     if (length(x) > lines) {
       # truncate the output, but add ....
       x <- c(head(x, lines), more)
@@ -74,10 +74,9 @@ library(tidyverse)
 As with most APIs, you need to authenticate somehow. I'll use my Ravelry account credentials (you'll need a [free, pro account](https://www.ravelry.com/pro/developer) to access the API).  
 
 ```{r, eval = FALSE}
-ravelRy::ravelry_auth(key = "username", overwrite = T)
+ravelRy::ravelry_auth(key = "username")
 ravelRy::ravelry_auth(key = "password")
 ```
-
 ```{r, include=FALSE}
 Sys.setenv("RAVELRY_USERNAME" = paste(keyring::key_get("RAVELRY_USERNAME")))
 Sys.setenv("RAVELRY_PASSWORD" = paste(keyring::key_get("RAVELRY_PASSWORD")))
@@ -88,11 +87,13 @@ Sys.setenv("RAVELRY_PASSWORD" = paste(keyring::key_get("RAVELRY_PASSWORD")))
 Lets start simple, and just look for the first 20 results for "sock" that are available as a Ravelry download.  
 
 ```{r}
-search_result <- search_patterns(query = "sock",
-                                 page_size = 20,
-                                 craft = "knitting", # knitting or crochet
-                                 fit = "adult", # adult, baby, etc.
-                                 ravelry_download = TRUE) 
+search_result <- search_patterns(
+  query = "sock",
+  page_size = 20,
+  craft = "knitting", # knitting or crochet
+  fit = "adult", # adult, baby, etc.
+  ravelry_download = TRUE
+)
 
 head(search_result)
 ```
@@ -100,14 +101,15 @@ head(search_result)
 The fourth result is even my old friend, "Hermione's Everyday Socks!"
 
 ```{r}
-search_result[4,] # get the fourth row in the table
+search_result[4, ] # get the fourth row in the table
 ```
 
 Lets take a look at the actual pattern from the search results using `get_patterns()`.  
 
 ```{r}
-hermione <- get_patterns(ids = search_result[4,]$id)
+hermione <- get_patterns(ids = search_result[4, ]$id)
 str(hermione, max.level = 2)
+str(hermione$pattern_attributes)
 ```
 
 I thought the Hermione sock was fairly straightforward. What is the average difficulty, on a scale of 1 to 10?  
@@ -141,17 +143,18 @@ There are fewer reviews, but the difficulty is super low.
 
 We can use the pattern table for `hermione` and `slip_it` to narrow our search further.   
 
-```{r}
-head(search_patterns(query = "sock",
-                     page_size = 20,
-                     craft = "knitting", # knitting or crochet
-                     fit = "adult", # adult, baby, etc.
-                     ravelry_download = TRUE,
-                     pattern_needle_sizes = 1,
-                     weight = "fingering", # yarn weight
-                     type = "sock",
-                     colors = 1)
-     )
+```{r, output.lines=1:8}
+head(search_patterns(
+  query = "sock",
+  page_size = 20,
+  craft = "knitting", # knitting or crochet
+  fit = "adult", # adult, baby, etc.
+  ravelry_download = TRUE,
+  pattern_needle_sizes = 1,
+  weight = "fingering", # yarn weight
+  type = "sock",
+  colors = 1
+))
 ```
 
 Another trick is to go look at the URL when I am searching on Ravelry itself.  
@@ -160,21 +163,23 @@ Another trick is to go look at the URL when I am searching on Ravelry itself.
 
 This gives me an idea of what search terms I can add to `search_patterns()`.  
 
-```{r}
-refined <- search_patterns(query = "socks",
-                pc = "mid-calf",
-                page_size = 30,
-                craft = "knitting", # knitting or crochet
-                # fit = "adult", # adult, baby, etc.
-                ravelry_download = TRUE,
-                pattern_needle_sizes = 1,
-                weight = "fingering", # yarn weight
-                type = "sock",
-                colors = 1,
-                diff = "3.5%7C8",
-                language = "en",
-                sort = "projects",
-                photo = "yes")
+```{r, eval = FALSE}
+refined_search <- search_patterns(
+  query = "socks",
+  pc = "mid-calf",
+  page_size = 100,
+  craft = "knitting", # knitting or crochet
+  # fit = "adult", # adult, baby, etc.
+  ravelry_download = TRUE,
+  pattern_needle_sizes = 1,
+  weight = "fingering", # yarn weight
+  type = "sock",
+  colors = 1,
+  diff = "3.5%7C8",
+  language = "en",
+  sort = "projects",
+  photo = "yes"
+)
 ```
 ```{r, include = FALSE}
 # saveRDS(refined_search, "refined_search.rds")
@@ -200,14 +205,19 @@ source("my_sock_theme.R")
 library(dutchmasters)
 ggplot() +
   geom_density(refined_patterns,
-                 mapping = aes(x = comments_count,
-                               fill = free),
-               alpha = 0.7,
-               color = "gray") +
-dutchmasters::scale_fill_dutchmasters(palette = "pearl_earring") +
-  labs(title = "Pattern Comment Density",
-       x = "Comment count",
-       y = "Density") +
+    mapping = aes(
+      x = comments_count,
+      fill = free
+    ),
+    alpha = 0.7,
+    color = "gray"
+  ) +
+  dutchmasters::scale_fill_dutchmasters(palette = "pearl_earring") +
+  labs(
+    title = "Pattern Comment Density",
+    x = "Comment count",
+    y = "Density"
+  ) +
   my_theme()
 ```
 
@@ -215,7 +225,7 @@ Next, we'll make a density plot series comparing the average difficulty rating f
 
 
 ```{r,  fig.width = 8, fig.height = 10}
-pattern_details_attributes <- refined_patterns %>% 
+pattern_details_attributes <- refined_patterns %>%
   unnest(cols = "pattern_attributes", names_sep = "_")
 
 
@@ -224,30 +234,37 @@ top_attributes <- pattern_details_attributes %>%
   count(pattern_attributes_permalink) %>%
   filter(n >= 20)
 
-attributes_long <- pattern_details_attributes %>% 
+attributes_long <- pattern_details_attributes %>%
   filter(pattern_attributes_permalink %in% top_attributes$pattern_attributes_permalink) %>%
-  select(id, pattern_attributes_permalink, difficulty_average, rating_average) 
+  select(id, pattern_attributes_permalink, difficulty_average, rating_average)
 
-attributes_long %>% 
+attributes_long %>%
   ggplot() +
   geom_density(aes(x = difficulty_average),
-               fill = dutchmasters::dutchmasters$pearl_earring[4],
-               color = "gray",
-               outline.type = "full") +
-  facet_grid(reorder(pattern_attributes_permalink, 
-                     difficulty_average, median)~.,
-             switch = 'y', scales = "free_y") +
+    fill = dutchmasters::dutchmasters$pearl_earring[4],
+    color = "gray",
+    outline.type = "full"
+  ) +
+  facet_grid(reorder(
+    pattern_attributes_permalink,
+    difficulty_average, median
+  ) ~ .,
+  switch = "y", scales = "free_y"
+  ) +
   scale_x_continuous(limits = c(2, 7)) +
-  labs(title = 'Average difficulty rating by pattern attribute',
-       y = '', x = 'Average difficulty') +
+  labs(
+    title = "Average difficulty rating by pattern attribute",
+    y = "", x = "Average difficulty"
+  ) +
   my_theme() +
-  theme(panel.spacing.y = unit(0, "lines"),
-        panel.grid = element_blank(),
-        panel.grid.major.y = element_blank(),
-        strip.text.y.left = element_text(angle =0),
-        strip.background = element_rect(fill = NA, color = NA),
-        axis.text.y = element_blank())
-
+  theme(
+    panel.spacing.y = unit(0, "lines"),
+    panel.grid = element_blank(),
+    panel.grid.major.y = element_blank(),
+    strip.text.y.left = element_text(angle = 0),
+    strip.background = element_rect(fill = NA, color = NA),
+    axis.text.y = element_blank()
+  )
 ```
 
 ## Narrow down results  
@@ -256,38 +273,47 @@ I want to use a pattern with high ratings and a high number of projects. What do
 
 ```{r}
 project_count <- ggplot(data = refined_patterns) +
-  geom_density(mapping = aes(x = projects_count),
-               fill = dutchmasters::dutchmasters$pearl_earring[2],
-               alpha = 0.8,
-               color = "gray") +
+  geom_density(
+    mapping = aes(x = projects_count),
+    fill = dutchmasters::dutchmasters$pearl_earring[2],
+    alpha = 0.8,
+    color = "gray"
+  ) +
   scale_x_continuous(labels = scales::comma) +
-  labs(title = "Project Count",
-       x = "Projects",
-       y = "") +
+  labs(
+    title = "Project Count",
+    x = "Projects",
+    y = ""
+  ) +
   my_theme()
 
 rating_count <- ggplot(data = refined_patterns) +
-  geom_density(mapping = aes(x = rating_count),
-               fill = dutchmasters::dutchmasters$pearl_earring[3],
-               alpha = 0.8,
-               color = "gray")+
+  geom_density(
+    mapping = aes(x = rating_count),
+    fill = dutchmasters::dutchmasters$pearl_earring[3],
+    alpha = 0.8,
+    color = "gray"
+  ) +
   scale_x_continuous(labels = scales::comma) +
-  labs(title = "Rating Count",
-       x = "Ratings",
-       y = "") +
+  labs(
+    title = "Rating Count",
+    x = "Ratings",
+    y = ""
+  ) +
   my_theme()
 
 
 cowplot::plot_grid(project_count, rating_count)
-
 ```
 
 It looks like there is a big drop-off around 1,000 project and 500 ratings.  
 
 ```{r}
-project_rating_patterns <- refined_patterns %>% 
-  filter(projects_count >= 1000,
-         rating_count >= 500)
+project_rating_patterns <- refined_patterns %>%
+  filter(
+    projects_count >= 1000,
+    rating_count >= 500
+  )
 ```
 
 That `filter()` took us from 100 patterns to 11. Progress!  
@@ -296,32 +322,43 @@ Now, lets look at the ratings and difficulty. We will also separate these out by
 
 ```{r}
 ggplot(project_rating_patterns) +
-  geom_point(mapping = aes(x = difficulty_average,
-                            y = rating_average,
-                            color = free),
-              size = 4) +
+  geom_point(
+    mapping = aes(
+      x = difficulty_average,
+      y = rating_average,
+      color = free
+    ),
+    size = 4
+  ) +
   dutchmasters::scale_color_dutchmasters(palette = "pearl_earring") +
-  labs(title = "Average Rating and Average Difficulty",
-       x = "Average difficulty",
-       y = "Average Rating") +
+  labs(
+    title = "Average Rating and Average Difficulty",
+    x = "Average difficulty",
+    y = "Average Rating"
+  ) +
   my_theme()
 ```
 
 Nothing too informative here. What are the top pattern attributes?  
 
 ```{r}
-project_rating_patterns %>% 
-  unnest(cols = "pattern_attributes", names_sep = "_") %>% 
-  count(pattern_attributes_permalink) %>% 
-  filter(n > 5) %>% 
-  arrange(desc(n)) %>% 
+project_rating_patterns %>%
+  unnest(cols = "pattern_attributes", names_sep = "_") %>%
+  count(pattern_attributes_permalink) %>%
+  filter(n > 5) %>%
+  arrange(desc(n)) %>%
   ggplot() +
-  geom_col(aes(x = pattern_attributes_permalink,
-               y = n),
-           fill = dutchmasters::dutchmasters$pearl_earring[9]) +
-  labs(title = "Top pattern attributes",
-       x = "Pattern attribute",
-       y = "Frequency") +
+  geom_col(aes(
+    x = pattern_attributes_permalink,
+    y = n
+  ),
+  fill = dutchmasters::dutchmasters$pearl_earring[9]
+  ) +
+  labs(
+    title = "Top pattern attributes",
+    x = "Pattern attribute",
+    y = "Frequency"
+  ) +
   my_theme()
 ```
 
@@ -329,8 +366,10 @@ project_rating_patterns %>%
 Another thing that makes patterns easy to follow is if they are downloadable (as opposed to linked to another web page). Lets `filter()` for that, and have a difficulty at least above 4. 
 
 ```{r, output.lines=1:8}
-filter(project_rating_patterns, downloadable == TRUE,
-       difficulty_average >= 4) %>% 
+filter(
+  project_rating_patterns, downloadable == TRUE,
+  difficulty_average >= 4
+) %>%
   arrange(-rating_average)
 ```
 
@@ -339,10 +378,12 @@ filter(project_rating_patterns, downloadable == TRUE,
 Now that we only have four left, lets fetch the images!  
 
 ```{r}
-photo_links <- filter(project_rating_patterns, downloadable == TRUE,
-       difficulty_average >= 4) %>% 
-  unnest(cols = photos,names_sep = "_") %>% 
-  filter(photos_sort_order == 4) %>% 
+photo_links <- filter(
+  project_rating_patterns, downloadable == TRUE,
+  difficulty_average >= 4
+) %>%
+  unnest(cols = photos, names_sep = "_") %>%
+  filter(photos_sort_order == 4) %>%
   select(id, name, photos_medium_url)
 ```
 
@@ -352,7 +393,7 @@ Next, we will use [`{imager}`](https://github.com/dahtah/imager) to fetch the da
 library(imager)
 photo_links$name
 
-map(photo_links$photos_medium_url, load.image) %>% 
+map(photo_links$photos_medium_url, load.image) %>%
   map(plot, axes = FALSE)
 ```
 
@@ -367,4 +408,3 @@ I have a lovely merino/nylon blend by [Sun Valley Fibers](https://www.instagram.
 ## Credits  
 
 I followed along [this example](https://github.com/walkerkq/ravelRy/blob/master/man/example_files/example_eda.md) by the ravelRy package author, [Kaylin Pavlik](https://www.kaylinpavlik.com/). I used colors from [Edwin Thoen](https://edwinth.github.io/)'s R package,  [dutchmasters](https://github.com/EdwinTh/dutchmasters).  
-
