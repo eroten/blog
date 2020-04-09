@@ -248,7 +248,7 @@ ggplot() +
     y = &quot;Density&quot;
   ) +
   my_theme()</code></pre>
-<p><img src="../../posts/2020-04-07-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-18-1.png" width="2100" /></p>
+<p><img src="../../posts/2020-04-08-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-18-1.png" width="2100" /></p>
 <p>Next, we’ll make a density plot series comparing the average difficulty rating for each pattern attribute (check out <a href="https://github.com/walkerkq/ravelRy/blob/master/man/example_files/example_eda.md">this example</a> for this plot’s inspiration).</p>
 <pre class="r"><code>pattern_details_attributes &lt;- refined_patterns %&gt;%
   unnest(cols = &quot;pattern_attributes&quot;, names_sep = &quot;_&quot;)
@@ -290,7 +290,7 @@ attributes_long %&gt;%
     strip.background = element_rect(fill = NA, color = NA),
     axis.text.y = element_blank()
   )</code></pre>
-<p><img src="../../posts/2020-04-07-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-19-1.png" width="2400" /></p>
+<p><img src="../../posts/2020-04-08-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-19-1.png" width="2400" /></p>
 </div>
 <div id="narrow-down-results" class="section level2">
 <h2>Narrow down results</h2>
@@ -336,7 +336,7 @@ rating_count &lt;- ggplot(data = refined_patterns) +
 
 
 cowplot::plot_grid(project_count, rating_count)</code></pre>
-<p><img src="../../posts/2020-04-07-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-20-1.png" width="2100" /></p>
+<p><img src="../../posts/2020-04-08-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-20-1.png" width="2100" /></p>
 <p>It looks like there is a big drop-off around 1,000 project and 500 ratings.</p>
 <pre class="r"><code>project_rating_patterns &lt;- refined_patterns %&gt;%
   filter(
@@ -361,7 +361,7 @@ cowplot::plot_grid(project_count, rating_count)</code></pre>
     y = &quot;Average Rating&quot;
   ) +
   my_theme()</code></pre>
-<p><img src="../../posts/2020-04-07-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-22-1.png" width="2100" /></p>
+<p><img src="../../posts/2020-04-08-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-22-1.png" width="2100" /></p>
 <p>Nothing too informative here. What are the top pattern attributes?</p>
 <pre class="r"><code>project_rating_patterns %&gt;%
   unnest(cols = &quot;pattern_attributes&quot;, names_sep = &quot;_&quot;) %&gt;%
@@ -381,7 +381,7 @@ cowplot::plot_grid(project_count, rating_count)</code></pre>
     y = &quot;Frequency&quot;
   ) +
   my_theme()</code></pre>
-<p><img src="../../posts/2020-04-07-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-23-1.png" width="2100" /></p>
+<p><img src="../../posts/2020-04-08-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-23-1.png" width="2100" /></p>
 <p>Another thing that makes patterns easy to follow is if they are downloadable (as opposed to linked to another web page). Lets <code>filter()</code> for that, and have a difficulty at least above 4.</p>
 <pre class="r"><code>filter(
   project_rating_patterns, downloadable == TRUE,
@@ -416,7 +416,7 @@ photo_links$name
 
 map(photo_links$photos_medium_url, load.image) %&gt;%
   map(plot, axes = FALSE)</code></pre>
-<p><img src="../../posts/2020-04-07-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-26-1.png" width="2100" /><img src="../../posts/2020-04-07-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-26-2.png" width="2100" /><img src="../../posts/2020-04-07-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-26-3.png" width="2100" /><img src="../../posts/2020-04-07-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-26-4.png" width="2100" /></p>
+<p><img src="../../posts/2020-04-08-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-26-1.png" width="2100" /><img src="../../posts/2020-04-08-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-26-2.png" width="2100" /><img src="../../posts/2020-04-08-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-26-3.png" width="2100" /><img src="../../posts/2020-04-08-finding-the-perfect-sock-pattern-with-ravelry_files/figure-html/unnamed-chunk-26-4.png" width="2100" /></p>
 <pre><code>#&gt; [[1]]
 #&gt; Image. Width: 425 pix Height: 500 pix Depth: 1 Colour channels: 3 
 #&gt; 
