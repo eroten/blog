@@ -244,7 +244,8 @@ ggplot() +
                         33.596, 34.25), &quot;SpatialPolygons&quot;) 
 proj4string(e2) &lt;- &quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;</code></pre>
 <p>Clip data to close area.</p>
-<pre class="r"><code>saucier_holocene_alluvial_close  &lt;- st_intersection(saucier_holocene_alluvial,
+<pre class="r"><code>saucier_holocene_alluvial_close  &lt;- st_intersection(saucier_holocene_alluvial %&gt;% 
+                                                      st_make_valid(),
                                                     st_as_sf(e2))
 saucier_holocene_close &lt;- st_intersection(saucier_holocene,
                                           st_as_sf(e2))
@@ -339,13 +340,13 @@ base +
 <div id="wisconsin-glaciation" class="section level3">
 <h3>Wisconsin glaciation</h3>
 <p>The <a href="https://en.wikipedia.org/wiki/Wisconsin_glaciation">Wisconsin Glacial Episode</a> was the most recent glacial period.</p>
-<pre class="r"><code>saucier_holocene_alluvial_closer &lt;- st_intersection(saucier_holocene_alluvial, st_as_sf(poly))
+<pre class="r"><code>saucier_holocene_alluvial_closer &lt;- st_intersection(st_make_valid(saucier_holocene_alluvial), st_as_sf(poly))
 saucier_holocene_closer &lt;- st_intersection(saucier_holocene,
                                            st_as_sf(poly))
-saucier_pleistocene_closer &lt;- st_intersection(saucier,
+saucier_pleistocene_closer &lt;- st_intersection(st_make_valid(saucier),
                                               st_as_sf(poly)) %&gt;% 
   filter(Geo_Age == &quot;Pleistocene&quot;)
-saucier_closer &lt;- st_intersection(saucier,
+saucier_closer &lt;- st_intersection(st_make_valid(saucier),
                                   st_as_sf(poly))
 ms_r_closer &lt;- st_intersection(ms_r_1983,
                                st_as_sf(poly))
@@ -417,13 +418,13 @@ primary</code></pre>
 <div id="context-and-inset-map" class="section level3">
 <h3>Context and inset map</h3>
 <p>To add a little more context, lets use <a href="https://walkerke.github.io/tidycensus/index.html">tidycensus</a> to bring in the TIGER shapefiles of Mississippi, Louisiana, and Arkansas.</p>
-<pre class="r"><code>all_states &lt;- get_estimates(geography = &quot;state&quot;, 
-                            state = c(&quot;Mississippi&quot;,
-                                      &quot;Arkansas&quot;,
-                                      &quot;Louisiana&quot;),
-                            geometry = TRUE,
-                            product = &quot;population&quot;) %&gt;% 
+<pre class="r"><code>all_states &lt;- tigris::states(
+                            class = &quot;sf&quot;,
+                            year = 2018) %&gt;% 
   dplyr::select(NAME) %&gt;% 
+  dplyr::filter(NAME %in% c(&quot;Mississippi&quot;,
+                                      &quot;Arkansas&quot;,
+                                      &quot;Louisiana&quot;)) %&gt;% 
   unique()</code></pre>
 <p>Lets take a look at what we got from tidycensus.</p>
 <pre class="r"><code>ggplot() +

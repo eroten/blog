@@ -94,7 +94,8 @@ library(DT)</code></pre>
 <p>Next, lets import our data. <code>read_sf()</code> is super useful here, because it will read in an <code>sf</code> object from a link to the spatial file we want. In this case, the link comes from each city’s open data portal</p>
 <p>When you go to the data portal and find the dataset you want, right click the link to download the GeoJSON and copy the link. Then, paste it into <code>read_sf()</code> and you’re good to go! Say goodbye to massive data folders!</p>
 <p>For this post, I’ve chosen (somewhat randomly) <a href="https://data.wprdc.org/dataset/zoning1">Pittsburgh, PA</a>, <a href="https://data.austintexas.gov/Locations-and-Maps/Land-Use-Inventory-Detailed/fj9m-h5qy">Austin, TX</a>, and <a href="https://data.boston.gov/dataset/zoning-subdistricts">Boston, MA</a>.</p>
-<pre class="r"><code>pitts &lt;- read_sf(&quot;http://pghgis-pittsburghpa.opendata.arcgis.com/datasets/e67592c2904b497b83ccf876fced7979_0.geojson&quot;)
+<pre class="r"><code>pitts &lt;- read_sf(&quot;http://pghgis-pittsburghpa.opendata.arcgis.com/datasets/e67592c2904b497b83ccf876fced7979_0.geojson&quot;) %&gt;% 
+  mutate(last_edited_date = as.POSIXct(last_edited_date/1000, origin=&quot;1970-01-01&quot;))
 
 boston &lt;- read_sf(&quot;http://bostonopendata-boston.opendata.arcgis.com/datasets/b601516d0af44d1c9c7695571a7dca80_0.geojson?outSR={%22latestWkid%22:2249,%22wkid%22:102686}&quot;)
 
@@ -174,18 +175,18 @@ my_theme &lt;- function(...) {
 ## [17] &quot;Shape__Area&quot;      &quot;Shape__Length&quot;    &quot;geometry&quot;</code></pre>
 <p>We are most interested in the “legendtype” column.</p>
 <pre class="r"><code>unique(pitts$legendtype)</code></pre>
-<pre><code>##  [1] &quot;Planned Unit Development&quot;         &quot;Two-Unit Residential&quot;            
-##  [3] &quot;Urban Neighborhood Commercial&quot;    &quot;Single-Unit Detached Residential&quot;
-##  [5] &quot;Single-Unit Attached Residential&quot; &quot;Educational/Medical Institution&quot; 
-##  [7] &quot;Hillside  &quot;                       &quot;Parks&quot;                           
-##  [9] &quot;Multi-Unit Residential&quot;           &quot;Golden Triangle &quot;                
-## [11] &quot;Riverfront&quot;                       &quot;Neighborhood Industrial&quot;         
-## [13] &quot;Local Neighborhood Commercial &quot;   &quot;Highway Commercial&quot;              
-## [15] &quot;Urban Industrial&quot;                 &quot;Mount Oliver Borough&quot;            
-## [17] &quot;Three-Unit Residential&quot;           &quot;General Industrial  &quot;            
-## [19] &quot;Oakland Public Realm&quot;             &quot;Specially Planned&quot;               
-## [21] &quot;Neighborhood Office&quot;              &quot;Grandview Public Realm&quot;          
-## [23] &quot;Uptown Public Realm&quot;</code></pre>
+<pre><code>##  [1] &quot;Parks&quot;                            &quot;Local Neighborhood Commercial &quot;  
+##  [3] &quot;Highway Commercial&quot;               &quot;Single-Unit Detached Residential&quot;
+##  [5] &quot;Urban Industrial&quot;                 &quot;Planned Unit Development&quot;        
+##  [7] &quot;Neighborhood Industrial&quot;          &quot;Two-Unit Residential&quot;            
+##  [9] &quot;Multi-Unit Residential&quot;           &quot;Hillside  &quot;                      
+## [11] &quot;Single-Unit Attached Residential&quot; &quot;Mount Oliver Borough&quot;            
+## [13] &quot;Three-Unit Residential&quot;           &quot;General Industrial  &quot;            
+## [15] &quot;Educational/Medical Institution&quot;  &quot;Oakland Public Realm&quot;            
+## [17] &quot;Specially Planned&quot;                &quot;Golden Triangle &quot;                
+## [19] &quot;Neighborhood Office&quot;              &quot;Urban Neighborhood Commercial&quot;   
+## [21] &quot;Grandview Public Realm&quot;           &quot;Uptown Public Realm&quot;             
+## [23] &quot;Riverfront&quot;</code></pre>
 <p>These are useful descriptions! We will re-code them into three categories: single-family detached, not single-family detached, and non-residential.</p>
 <pre class="r"><code>pitts_clean &lt;- pitts %&gt;% 
   rowwise() %&gt;% 
@@ -212,7 +213,7 @@ my_theme &lt;- function(...) {
        subtitle = &quot;Residential zoning&quot;,
        fill = &quot;&quot;,
        caption = paste(&quot;City of Pittsburgh,&quot;,
-                       format(pitts_clean$last_edited_date, &quot;%Y&quot;))) + 
+                       lubridate::year(pitts_clean$last_edited_date))) + 
   my_theme() +
   scale_fill_manual(values = c(&quot;whitesmoke&quot;, blue, pink),
                     labels = c(&quot;Non-residential&quot;,
@@ -223,8 +224,8 @@ my_theme &lt;- function(...) {
 <pre class="r"><code># import &quot;Allegheny County Hydrology Areas&quot; 
 
 pitt_water &lt;- read_sf(&quot;http://openac-alcogis.opendata.arcgis.com/datasets/9ff3941e47f74c609057cb60f4992852_0.geojson&quot;) %&gt;% 
-  lwgeom::st_make_valid() %&gt;% 
-  st_intersection(pitts) # instersect with city limits</code></pre>
+  sf::st_make_valid() %&gt;% 
+  st_intersection(sf::st_make_valid(pitts)) # instersect with city limits</code></pre>
 <pre class="r"><code>ggplot() +
   geom_sf(data = pitts_clean,
           aes(fill = zone_simple),
@@ -255,7 +256,7 @@ pitt_water &lt;- read_sf(&quot;http://openac-alcogis.opendata.arcgis.com/dataset
 ##  [9] &quot;zoning_id&quot;     &quot;geometry&quot;</code></pre>
 <p>Next, we can look at “zoning_ztype.”</p>
 <pre class="r"><code>head(unique(austin$zoning_ztype))</code></pre>
-<pre><code>## [1] &quot;GO-MU-CO&quot; &quot;CS&quot;       &quot;SF-2-NP&quot;  &quot;SF-4A&quot;    &quot;LO-CO&quot;    &quot;GR&quot;</code></pre>
+<pre><code>## [1] &quot;SF-2&quot;      &quot;I-SF-2&quot;    &quot;SF-3-H-NP&quot; &quot;P-NP&quot;      &quot;P&quot;         &quot;LI-PDA-NP&quot;</code></pre>
 <p>YIKES. Looks like we need a data dictionary.</p>
 <p>I would love to say that I elegantly extracted the zoning codes from the <a href="http://www.austintexas.gov/page/zoning-districts">city’s website</a>, but I ended up copying the HTML table to Excel and manipulating the columns from there. The text-to-columns tool is very useful fo instances like this. I also added codes “SF-4” and “MF”, which weren’t explicitly provided.</p>
 <pre class="r"><code>austin_desc &lt;- read.csv(&quot;data/zoning_descriptions.csv&quot;) %&gt;% 

@@ -271,7 +271,8 @@ proj4string(e2) <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
 Clip data to close area.  
 
 ```{r}
-saucier_holocene_alluvial_close  <- st_intersection(saucier_holocene_alluvial,
+saucier_holocene_alluvial_close  <- st_intersection(saucier_holocene_alluvial %>% 
+                                                      st_make_valid(),
                                                     st_as_sf(e2))
 saucier_holocene_close <- st_intersection(saucier_holocene,
                                           st_as_sf(e2))
@@ -377,13 +378,13 @@ base +
 The [Wisconsin Glacial Episode](https://en.wikipedia.org/wiki/Wisconsin_glaciation) was the most recent glacial period.  
 
 ```{r}
-saucier_holocene_alluvial_closer <- st_intersection(saucier_holocene_alluvial, st_as_sf(poly))
+saucier_holocene_alluvial_closer <- st_intersection(st_make_valid(saucier_holocene_alluvial), st_as_sf(poly))
 saucier_holocene_closer <- st_intersection(saucier_holocene,
                                            st_as_sf(poly))
-saucier_pleistocene_closer <- st_intersection(saucier,
+saucier_pleistocene_closer <- st_intersection(st_make_valid(saucier),
                                               st_as_sf(poly)) %>% 
   filter(Geo_Age == "Pleistocene")
-saucier_closer <- st_intersection(saucier,
+saucier_closer <- st_intersection(st_make_valid(saucier),
                                   st_as_sf(poly))
 ms_r_closer <- st_intersection(ms_r_1983,
                                st_as_sf(poly))
@@ -457,13 +458,13 @@ primary
 To add a little more context, lets use [tidycensus](https://walkerke.github.io/tidycensus/index.html) to bring in the TIGER shapefiles of Mississippi, Louisiana, and Arkansas.    
 
 ```{r, message = FALSE, warning = FALSE, results='hide'}
-all_states <- get_estimates(geography = "state", 
-                            state = c("Mississippi",
-                                      "Arkansas",
-                                      "Louisiana"),
-                            geometry = TRUE,
-                            product = "population") %>% 
+all_states <- tigris::states(
+                            class = "sf",
+                            year = 2018) %>% 
   dplyr::select(NAME) %>% 
+  dplyr::filter(NAME %in% c("Mississippi",
+                                      "Arkansas",
+                                      "Louisiana")) %>% 
   unique()
 ```
 

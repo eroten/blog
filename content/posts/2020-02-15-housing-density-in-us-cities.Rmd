@@ -66,7 +66,8 @@ When you go to the data portal and find the dataset you want, right click the li
 For this post, I've chosen (somewhat randomly) [Pittsburgh, PA](https://data.wprdc.org/dataset/zoning1), [Austin, TX](https://data.austintexas.gov/Locations-and-Maps/Land-Use-Inventory-Detailed/fj9m-h5qy), and [Boston, MA](https://data.boston.gov/dataset/zoning-subdistricts).  
 
 ```{r}
-pitts <- read_sf("http://pghgis-pittsburghpa.opendata.arcgis.com/datasets/e67592c2904b497b83ccf876fced7979_0.geojson")
+pitts <- read_sf("http://pghgis-pittsburghpa.opendata.arcgis.com/datasets/e67592c2904b497b83ccf876fced7979_0.geojson") %>% 
+  mutate(last_edited_date = as.POSIXct(last_edited_date/1000, origin="1970-01-01"))
 
 boston <- read_sf("http://bostonopendata-boston.opendata.arcgis.com/datasets/b601516d0af44d1c9c7695571a7dca80_0.geojson?outSR={%22latestWkid%22:2249,%22wkid%22:102686}")
 
@@ -190,7 +191,7 @@ ggplot() +
        subtitle = "Residential zoning",
        fill = "",
        caption = paste("City of Pittsburgh,",
-                       format(pitts_clean$last_edited_date, "%Y"))) + 
+                       lubridate::year(pitts_clean$last_edited_date))) + 
   my_theme() +
   scale_fill_manual(values = c("whitesmoke", blue, pink),
                     labels = c("Non-residential",
@@ -204,8 +205,8 @@ This map looks like its missing something, so I'm going to add in [hydrology fea
 # import "Allegheny County Hydrology Areas" 
 
 pitt_water <- read_sf("http://openac-alcogis.opendata.arcgis.com/datasets/9ff3941e47f74c609057cb60f4992852_0.geojson") %>% 
-  lwgeom::st_make_valid() %>% 
-  st_intersection(pitts) # instersect with city limits
+  sf::st_make_valid() %>% 
+  st_intersection(sf::st_make_valid(pitts)) # instersect with city limits
 ```
 
 

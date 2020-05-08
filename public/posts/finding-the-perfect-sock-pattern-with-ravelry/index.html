@@ -89,63 +89,63 @@ head(search_result)
 #&gt; # A tibble: 6 x 7
 #&gt;   free       id name      permalink   designer.id designer.name  pattern_sources
 #&gt;   &lt;lgl&gt;   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;          &lt;list&gt;         
-#&gt; 1 FALSE 1014660 Diamond ~ diamond-du~      100153 Liz Harris     &lt;df[,59] [2 x ~
+#&gt; 1 FALSE 1020039 Braidalot braidalot         97793 Dots Dabbles   &lt;df[,59] [1 x ~
 #&gt; 2 FALSE 1009293 Wohin?    wohin             17216 Caoua Coffee   &lt;df[,59] [2 x ~
-#&gt; 3 FALSE 1020039 Braidalot braidalot         97793 Dots Dabbles   &lt;df[,59] [1 x ~
-#&gt; 4 TRUE   130787 Hermione~ hermiones-~       14789 Erica Lueder   &lt;df[,59] [2 x ~
-#&gt; 5 TRUE   580119 Rose Cit~ rose-city-~       82613 Mara Catherin~ &lt;df[,59] [1 x ~
-#&gt; 6 TRUE   891114 Rye Light rye-light         45502 tincanknits    &lt;df[,59] [3 x ~</code></pre>
+#&gt; 3 FALSE 1014660 Diamond ~ diamond-du~      100153 Liz Harris     &lt;df[,59] [2 x ~
+#&gt; 4 FALSE 1031455 Sock Emp~ sock-empor~      111848 Gwen Moeller   &lt;df[,59] [1 x ~
+#&gt; 5 TRUE   130787 Hermione~ hermiones-~       14789 Erica Lueder   &lt;df[,59] [2 x ~
+#&gt; 6 TRUE   580119 Rose Cit~ rose-city-~       82613 Mara Catherin~ &lt;df[,59] [1 x ~</code></pre>
 <p>The fourth result is even my old friend, “Hermione’s Everyday Socks!”</p>
 <pre class="r"><code>search_result[4, ] # get the fourth row in the table
 #&gt; # A tibble: 1 x 7
-#&gt;   free      id name       permalink    designer.id designer.name pattern_sources
-#&gt;   &lt;lgl&gt;  &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;         &lt;list&gt;         
-#&gt; 1 TRUE  130787 Hermione&#39;~ hermiones-e~       14789 Erica Lueder  &lt;df[,59] [2 x ~</code></pre>
+#&gt;   free       id name      permalink   designer.id designer.name pattern_sources 
+#&gt;   &lt;lgl&gt;   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;             &lt;int&gt; &lt;chr&gt;         &lt;list&gt;          
+#&gt; 1 FALSE 1031455 Sock Emp~ sock-empor~      111848 Gwen Moeller  &lt;df[,59] [1 x 5~</code></pre>
 <p>Lets take a look at the actual pattern from the search results using <code>get_patterns()</code>.</p>
 <pre class="r"><code>hermione &lt;- get_patterns(ids = search_result[4, ]$id)
 str(hermione, max.level = 2)
 #&gt; tibble [1 x 50] (S3: tbl_df/tbl/data.frame)
-#&gt;  $ comments_count         : int 150
-#&gt;  $ created_at             : chr &quot;2009/07/09 11:36:45 -0400&quot;
-#&gt;  $ currency               : chr &quot;&quot;
-#&gt;  $ difficulty_average     : num 2.34
-#&gt;  $ difficulty_count       : int 7406
+#&gt;  $ comments_count         : int 3
+#&gt;  $ created_at             : chr &quot;2020/05/07 16:28:33 -0400&quot;
+#&gt;  $ currency               : chr &quot;USD&quot;
+#&gt;  $ difficulty_average     : int 0
+#&gt;  $ difficulty_count       : chr &quot;&quot;
 #&gt;  $ downloadable           : logi TRUE
-#&gt;  $ favorites_count        : int 56151
-#&gt;  $ free                   : logi TRUE
-#&gt;  $ gauge                  : num 36
-#&gt;  $ gauge_divisor          : int 4
-#&gt;  $ gauge_pattern          : chr &quot;stockinette stitch  &quot;
-#&gt;  $ generally_available    : chr &quot;2009/07/01 00:00:00 -0400&quot;
-#&gt;  $ id                     : int 130787
-#&gt;  $ name                   : chr &quot;Hermione&#39;s Everyday Socks&quot;
+#&gt;  $ favorites_count        : int 61
+#&gt;  $ free                   : logi FALSE
+#&gt;  $ gauge                  : num 8
+#&gt;  $ gauge_divisor          : int 1
+#&gt;  $ gauge_pattern          : chr &quot;&quot;
+#&gt;  $ generally_available    : chr &quot;2020/05/01 00:00:00 -0400&quot;
+#&gt;  $ id                     : int 1031455
+#&gt;  $ name                   : chr &quot;Sock Emporium&quot;
 #&gt;  $ pdf_url                : chr &quot;&quot;
-#&gt;  $ permalink              : chr &quot;hermiones-everyday-socks&quot;
-#&gt;  $ price                  : chr &quot;&quot;
-#&gt;  $ projects_count         : int 30203
-#&gt;  $ published              : chr &quot;2009/07/01&quot;
-#&gt;  $ queued_projects_count  : int 11926
-#&gt;  $ rating_average         : num 4.63
-#&gt;  $ rating_count           : int 7458
+#&gt;  $ permalink              : chr &quot;sock-emporium&quot;
+#&gt;  $ price                  : num 3
+#&gt;  $ projects_count         : int 39
+#&gt;  $ published              : chr &quot;2020/05/01&quot;
+#&gt;  $ queued_projects_count  : int 10
+#&gt;  $ rating_average         : int 0
+#&gt;  $ rating_count           : chr &quot;&quot;
 #&gt;  $ row_gauge              : chr &quot;&quot;
-#&gt;  $ updated_at             : chr &quot;2017/01/03 08:29:11 -0500&quot;
-#&gt;  $ url                    : chr &quot;http://dreamsinfiber.blogspot.com/2009/07/hermoines-everyday-socks-free-pattern.html#links&quot;
-#&gt;  $ yardage                : int 350
-#&gt;  $ yardage_max            : int 400
+#&gt;  $ updated_at             : chr &quot;2020/05/08 00:17:34 -0400&quot;
+#&gt;  $ url                    : chr &quot;&quot;
+#&gt;  $ yardage                : int 100
+#&gt;  $ yardage_max            : int 450
 #&gt;  $ personal_attributes    : chr &quot;&quot;
-#&gt;  $ sizes_available        : chr &quot;Women&#39;s med&quot;
-#&gt;  $ product_id             : int 29899
-#&gt;  $ currency_symbol        : chr &quot;&quot;
+#&gt;  $ sizes_available        : chr &quot;36-Stitch, 40-Stitch, 44-Stitch, 48-Stitch, 52-Stitch, 56-Stitch, 60-Stitch, 64-Stitch, 68-Stitch, 72-Stitch, 76-Stitch&quot;
+#&gt;  $ product_id             : int 610084
+#&gt;  $ currency_symbol        : chr &quot;$&quot;
 #&gt;  $ ravelry_download       : logi TRUE
 #&gt;  $ download_location      :List of 1
 #&gt;  $ pdf_in_library         : logi FALSE
 #&gt;  $ volumes_in_library     : chr &quot;&quot;
-#&gt;  $ gauge_description      : chr &quot;36 stitches  = 4 inches in stockinette stitch  &quot;
-#&gt;  $ yarn_weight_description: chr &quot;Fingering (14 wpi)&quot;
-#&gt;  $ yardage_description    : chr &quot;350 - 400 yards&quot;
+#&gt;  $ gauge_description      : chr &quot;8 stitches  = 1 inch&quot;
+#&gt;  $ yarn_weight_description: chr &quot;Light Fingering&quot;
+#&gt;  $ yardage_description    : chr &quot;100 - 450 yards&quot;
 #&gt;  $ pattern_needle_sizes   :List of 1
-#&gt;  $ notes_html             : chr &quot;\n&lt;p&gt;Hermione, as described in J.K. Rowling’s Harry Potter Series, is a rather smart and practical heroine. Whi&quot;| __truncated__
-#&gt;  $ notes                  : chr &quot;Hermione, as described in J.K. Rowling’s Harry Potter Series, is a rather smart and practical heroine.   While &quot;| __truncated__
+#&gt;  $ notes_html             : chr &quot;\n&lt;p&gt;Welcome to the Sock Emporium! There are eleven sizes, to fit everyone! Full instructions are included for &quot;| __truncated__
+#&gt;  $ notes                  : chr &quot;Welcome to the Sock Emporium! There are eleven sizes, to fit everyone! Full instructions are included for plain&quot;| __truncated__
 #&gt;  $ packs                  :List of 1
 #&gt;  $ printings              :List of 1
 #&gt;  $ yarn_weight            :List of 1
@@ -157,23 +157,23 @@ str(hermione, max.level = 2)
 #&gt;  $ pattern_type           :List of 1
 str(hermione$pattern_attributes)
 #&gt; List of 1
-#&gt;  $ : tibble [12 x 2] (S3: tbl_df/tbl/data.frame)
-#&gt;   ..$ id       : int [1:12] 3 8 9 10 12 23 26 70 205 262 ...
-#&gt;   ..$ permalink: chr [1:12] &quot;unisex&quot; &quot;child&quot; &quot;teen&quot; &quot;adult&quot; ...</code></pre>
+#&gt;  $ : tibble [22 x 2] (S3: tbl_df/tbl/data.frame)
+#&gt;   ..$ id       : int [1:22] 1 2 3 4 5 7 8 9 10 12 ...
+#&gt;   ..$ permalink: chr [1:22] &quot;male&quot; &quot;female&quot; &quot;unisex&quot; &quot;baby&quot; ...</code></pre>
 <p>I thought the Hermione sock was fairly straightforward. What is the average difficulty, on a scale of 1 to 10?</p>
 <pre class="r"><code>hermione$difficulty_count # how many reviews rated a difficulty?
-#&gt; [1] 7406
+#&gt; [1] &quot;&quot;
 hermione$difficulty_average # what is the average difficulty?
-#&gt; [1] 2.34202</code></pre>
+#&gt; [1] 0</code></pre>
 <p>Lets find my other sock pattern, Slip It Simple, and see what the difficulty rating is.</p>
 <pre class="r"><code>slip_it_search &lt;- search_patterns(query = &quot;slip it simple sock&quot;)</code></pre>
 <p>Next, take the <code>id</code> column and feed it into <code>get_patterns()</code>.</p>
 <pre class="r"><code>slip_it &lt;- get_patterns(ids = slip_it_search$id)</code></pre>
 <p>What is our difficulty?</p>
 <pre class="r"><code>slip_it$difficulty_count
-#&gt; [1] 39
+#&gt; [1] 44
 slip_it$difficulty_average
-#&gt; [1] 1.974359</code></pre>
+#&gt; [1] 1.977273</code></pre>
 <p>There are fewer reviews, but the difficulty is super low.</p>
 </div>
 <div id="refining-our-search" class="section level2">
@@ -197,8 +197,8 @@ slip_it$difficulty_average
 #&gt; 1 TRUE   130787 Hermione~ hermiones-~       14789 Erica Lueder   &lt;df[,59] [2 x ~
 #&gt; 2 TRUE   580119 Rose Cit~ rose-city-~       82613 Mara Catherin~ &lt;df[,59] [1 x ~
 #&gt; 3 TRUE   891114 Rye Light rye-light         45502 tincanknits    &lt;df[,59] [3 x ~
-#&gt; 4 FALSE  720294 Mina&#39;s V~ minas-vani~       81846 Knitting Expa~ &lt;df[,59] [2 x ~
-#&gt; 5 TRUE   315418 Vanilla ~ vanilla-la~       53376 Virginia Rose~ &lt;df[,59] [1 x ~
+#&gt; 4 TRUE   315418 Vanilla ~ vanilla-la~       53376 Virginia Rose~ &lt;df[,59] [1 x ~
+#&gt; 5 FALSE  720294 Mina&#39;s V~ minas-vani~       81846 Knitting Expa~ &lt;df[,59] [2 x ~
 ...</code></pre>
 <p>Another trick is to go look at the URL when I am searching on Ravelry itself.</p>
 <div class="figure">

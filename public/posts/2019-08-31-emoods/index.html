@@ -393,6 +393,11 @@ my_theme &lt;- function(...) {
 <h2><strong>October 2019 update</strong> now with gganimate!</h2>
 <p>I’ve made a series of iterative plots for work, and I finally decided to try <a href="https://gganimate.com/">gganimate</a>. Friends, I may never go back.</p>
 <pre class="r"><code>library(gganimate)</code></pre>
+<pre><code>## No renderer backend detected. gganimate will default to writing frames to separate files
+## Consider installing:
+## - the `gifski` package for gif output
+## - the `av` package for video output
+## and restarting the R session</code></pre>
 <pre class="r"><code>ggplot(data = plot_data %&gt;% 
          filter(year(date) == 2018)) +
   geom_col(
