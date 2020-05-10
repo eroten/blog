@@ -24,7 +24,7 @@ I decided to get a little wild with my Sunday, so I wrote a tiny R package! I al
 
 I was inspired to make this package after listening to [99% Invisible's](https://99percentinvisible.org/) 400th episode: ["The Smell of Concrete After Rain"](https://99percentinvisible.org/episode/the-smell-of-concrete-after-rain/). Hearing Roman Mars read through a small selection of these things, I decided to read the entire list. I figured it would be nice to read one of these every once in a while, so I made this package to return a random "thing" from the list.  
 
-I was also inspired by my dear friend Katie Jolly's R package, [`{advicegiveR}`](https://github.com/katiejolly/advicegiveR). Katie introduced me to 99pi, and I am forever grateful.  
+I was also inspired by my dear friend [Katie Jolly](https://twitter.com/katiejolly6)'s R package, [`{advicegiveR}`](https://github.com/katiejolly/advicegiveR). Katie introduced me to 99pi, and I am forever grateful.  
 
 ## Installation
 
