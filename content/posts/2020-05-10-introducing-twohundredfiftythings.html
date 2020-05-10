@@ -1,0 +1,59 @@
+---
+title: Introducing {twohundredfiftythings}
+author: Liz Roten
+date: '2020-05-10'
+slug: introducing-twohundredfiftythings
+description: A package inspired by Michael Sorkin's "Two Hundred Fifty Things an Architect Should Know."
+categories:
+  - blog
+  - package development
+tags:
+  - package development
+  - dplyr
+  - magrittr
+  - tidyverse
+  - CRAN
+  - podcasts
+---
+
+
+
+<p>I decided to get a little wild with my Sunday, so I wrote a tiny R package! I also submitted it to CRAN. Its my first time submitting to CRAN, but I’m feeling hopeful!</p>
+<p><a href="https://github.com/eroten/twohundredfiftythings"><code>{twohundredfiftythings}</code></a> is a tiny R package that allows the user to access Michael Sorkin’s list of things an architect should know. The list was originally published in “What Goes Up: The Rights and Wrongs to a City”.</p>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>I was inspired to make this package after listening to <a href="https://99percentinvisible.org/">99% Invisible’s</a> 400th episode: <a href="https://99percentinvisible.org/episode/the-smell-of-concrete-after-rain/">“The Smell of Concrete After Rain”</a>. Hearing Roman Mars read through a small selection of these things, I decided to read the entire list. I figured it would be nice to read one of these every once in a while, so I made this package to return a random “thing” from the list.</p>
+<p>I was also inspired by my dear friend Katie Jolly’s R package, <a href="https://github.com/katiejolly/advicegiveR"><code>{advicegiveR}</code></a>. Katie introduced me to 99pi, and I am forever grateful.</p>
+</div>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>You can install the development version of <code>{twohundredfiftythings}</code> using <code>remotes::install_github()</code>.</p>
+<pre class="r"><code>remotes::install_github(&quot;eroten/twohundredfiftythings&quot;)</code></pre>
+</div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<p>The only function is <code>what_should_an_architect_know()</code>. To get a random thing, leave the inputs empty.</p>
+<pre class="r"><code>library(twohundredfiftythings)
+library(dplyr)
+
+set.seed(99)
+what_should_an_architect_know()</code></pre>
+<pre><code>## [1] &quot;The Nolli Plan.&quot;</code></pre>
+<p>You can also access a specific thing from the list.</p>
+<pre class="r"><code>what_should_an_architect_know(40)</code></pre>
+<pre><code>## [1] &quot;What the client thinks it wants.&quot;</code></pre>
+<p>Input a vector of integers to get multiple things from the list.</p>
+<pre class="r"><code>what_should_an_architect_know(thing = c(1, 80))</code></pre>
+<pre><code>## [1] &quot;The feel of cool marble under bare feet.&quot;
+## [2] &quot;The reasons for (borders’) tenacity.&quot;</code></pre>
+<p>You can access the full list, as well.</p>
+<pre class="r"><code>head(things_an_architect_should_know)</code></pre>
+<pre><code>##   n                                                                  thing
+## 1 1                               The feel of cool marble under bare feet.
+## 2 2        How to live in a small room with five strangers for six months.
+## 3 3 (How to live with) the same five strangers in a lifeboat for one week.
+## 4 4                                                The modulus of rupture.
+## 5 5                              The distance a shout carries in the city.
+## 6 6                                             The distance of a whisper.</code></pre>
+<p>You can check this package out on <a href="https://github.com/eroten/twohundredfiftythings">GitHub.</a> Feel free to contribute or submit any issues you find!</p>
+</div>

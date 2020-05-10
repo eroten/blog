@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gimp on Liz Roten</title>
-    <link>https://lizrotenblog.netlify.com/tags/gimp/</link>
+    <link>/tags/gimp/</link>
     <description>Recent content in gimp on Liz Roten</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 27 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://lizrotenblog.netlify.com/tags/gimp/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/gimp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Fisk&#39;s &#39;Mississippi River Meander&#39; in R</title>
-      <link>https://lizrotenblog.netlify.com/posts/2019-10-27-fisk-s-mississippi-river-meander-in-r/</link>
+      <link>/posts/2019-10-27-fisk-s-mississippi-river-meander-in-r/</link>
       <pubDate>Sun, 27 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://lizrotenblog.netlify.com/posts/2019-10-27-fisk-s-mississippi-river-meander-in-r/</guid>
+      <guid>/posts/2019-10-27-fisk-s-mississippi-river-meander-in-r/</guid>
       <description>BackgroundPrepData cleaningExplore geological ages and formationsWisconsin glaciationContext and inset mapFinishing upNotesData citationBackgroundThose of us even mildly obsessed with maps will be familiar with Harold Fisk’s 1944 series documenting the historic travel of the Mississippi River in Mississippi River Alluvial Valley. In my house in college, filled with geography majors and map enthusiasts, we had a small print hung on the wall, and it was easy to start reading it, and end up standing there, just staring, for quite a while.</description>
     </item>
     

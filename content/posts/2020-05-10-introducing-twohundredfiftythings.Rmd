@@ -1,0 +1,69 @@
+---
+title: Introducing {twohundredfiftythings}
+author: Liz Roten
+date: '2020-05-10'
+slug: introducing-twohundredfiftythings
+description: A package inspired by Michael Sorkin's "Two Hundred Fifty Things an Architect Should Know."
+categories:
+  - blog
+  - package development
+tags:
+  - package development
+  - dplyr
+  - magrittr
+  - tidyverse
+  - CRAN
+  - podcasts
+---
+
+I decided to get a little wild with my Sunday, so I wrote a tiny R package! I also submitted it to CRAN. Its my first time submitting to CRAN, but I'm feeling hopeful! 
+
+[`{twohundredfiftythings}`](https://github.com/eroten/twohundredfiftythings) is a tiny R package that allows the user to access Michael Sorkin's list of things an architect should know. The list was originally published in "What Goes Up: The Rights and Wrongs to a City". 
+
+## Background  
+
+I was inspired to make this package after listening to [99% Invisible's](https://99percentinvisible.org/) 400th episode: ["The Smell of Concrete After Rain"](https://99percentinvisible.org/episode/the-smell-of-concrete-after-rain/). Hearing Roman Mars read through a small selection of these things, I decided to read the entire list. I figured it would be nice to read one of these every once in a while, so I made this package to return a random "thing" from the list.  
+
+I was also inspired by my dear friend Katie Jolly's R package, [`{advicegiveR}`](https://github.com/katiejolly/advicegiveR). Katie introduced me to 99pi, and I am forever grateful.  
+
+## Installation
+
+You can install the development version of `{twohundredfiftythings}` using `remotes::install_github()`.  
+
+```{r, eval = FALSE}
+remotes::install_github("eroten/twohundredfiftythings")
+```
+
+## Examples  
+
+The only function is `what_should_an_architect_know()`. To get a random thing, leave the inputs empty.  
+
+
+```{r, warning = FALSE, message = FALSE}
+library(twohundredfiftythings)
+library(dplyr)
+
+set.seed(99)
+what_should_an_architect_know()
+```
+
+You can also access a specific thing from the list. 
+
+```{r}
+what_should_an_architect_know(40)
+```
+
+Input a vector of integers to get multiple things from the list. 
+
+```{r, warning = FALSE}
+what_should_an_architect_know(thing = c(1, 80))
+```
+
+You can access the full list, as well. 
+
+```{r}
+head(things_an_architect_should_know)
+```
+
+
+You can check this package out on [GitHub.](https://github.com/eroten/twohundredfiftythings) Feel free to contribute or submit any issues you find!
